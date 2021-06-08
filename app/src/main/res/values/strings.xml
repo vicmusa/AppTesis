@@ -3,6 +3,13 @@
     <string name="home">Inicio</string>
     <string name="info">Información</string>
     <string name="datos">Evolución</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="cédula">Cédula</string>
+    <string name="edad">Edad</string>
+    <string name="alergias">Alergias</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="agregar_paciente">Agregar paciente</string>
+    <string name="Cancelar">Cancelar</string>
+    <string name="agregar">HOME</string>
 </resources>
