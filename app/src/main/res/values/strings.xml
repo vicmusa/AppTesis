@@ -11,10 +11,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="agregar_paciente">Agregar paciente</string>
     <string name="Cancelar">Cancelar</string>
-    <string name="Peso">Peso</string>
-    <string name="Estatura">Estatura</string>
     <string name="agregar">HOME</string>
     <string name="emptyfields">Los campos no pueden estar vacios</string>
+    <string name="addPacient">Paciente Creado Correctamente</string>
     <string name="IDdispositivo">ID del dispositivo</string>
     <string name="Usando">¿Usando dispositivo?</string>
+    <string name="Peso">Peso</string>
+    <string name="Estatura">Estatura</string>
 </resources>
