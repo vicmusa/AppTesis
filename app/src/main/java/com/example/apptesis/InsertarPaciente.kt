@@ -4,10 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.constraintlayout.motion.widget.TransitionBuilder.validate
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlin.properties.Delegates
@@ -49,7 +46,6 @@ class InsertarPaciente : AppCompatActivity() {
     }
 
     private fun inicializar() {
-        TODO("Not yet implemented, TERMINAR LA IMPLEMENTACION")
         database = FirebaseFirestore.getInstance()
         txtName = findViewById(R.id.etxtnombre)
         txtLastName = findViewById(R.id.etxtapellido)
@@ -59,6 +55,17 @@ class InsertarPaciente : AppCompatActivity() {
         txtPeso = findViewById(R.id.etxtpeso)
         txtID = findViewById(R.id.etxtID)
         grupoSanguineo = findViewById(R.id.gruprosang)
+
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.Gruposang,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            grupoSanguineo.adapter = adapter
+        }
     }
 
     fun cancelar(view: View) {
@@ -66,6 +73,9 @@ class InsertarPaciente : AppCompatActivity() {
     }
 
     fun addPaciente(view: View) {
+
+        sange = grupoSanguineo.selectedItem.toString()
+
 
         if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(apellido)
             && !TextUtils.isEmpty(edad) && !TextUtils.isEmpty(peso) && !TextUtils.isEmpty(estatura) && !TextUtils.isEmpty(
