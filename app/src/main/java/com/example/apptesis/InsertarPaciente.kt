@@ -78,5 +78,7 @@ class InsertarPaciente : AppCompatActivity() {
         TODO("Not yet implemented")
     }
 
+    fun setTipoSangre(view: View) {}
+
 
 }
