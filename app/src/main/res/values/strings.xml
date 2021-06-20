@@ -12,4 +12,5 @@
     <string name="agregar_paciente">Agregar paciente</string>
     <string name="Cancelar">Cancelar</string>
     <string name="agregar">HOME</string>
+    <string name="emptyfields">Los campos no pueden estar vacios</string>
 </resources>
