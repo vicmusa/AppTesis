@@ -10,8 +10,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlin.properties.Delegates
 
 class InsertarPaciente : AppCompatActivity() {
-    var fraccion: String = "Eta"
-    var instrumento: String = "Lira"
     private lateinit var database: FirebaseFirestore
     private lateinit var txtName: EditText
     private lateinit var txtLastName: EditText
@@ -21,17 +19,19 @@ class InsertarPaciente : AppCompatActivity() {
     private lateinit var txtPeso: EditText
     private lateinit var txtID: EditText
     private lateinit var grupoSanguineo: Spinner
+    private lateinit var checkUs : CheckBox
     var name by Delegates.notNull<String>()
     var apellido by Delegates.notNull<String>()
     var edad by Delegates.notNull<String>()
     var CI by Delegates.notNull<String>()
     var estatura by Delegates.notNull<String>()
     var peso by Delegates.notNull<String>()
-    var IDdisp by Delegates.notNull<String>()
+    var IDdisp = " "
     var sange by Delegates.notNull<String>()
     var prevPato = ""
     var alergias = ""
     var tiempo = 0
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +55,7 @@ class InsertarPaciente : AppCompatActivity() {
         txtPeso = findViewById(R.id.etxtpeso)
         txtID = findViewById(R.id.etxtID)
         grupoSanguineo = findViewById(R.id.gruprosang)
+        checkUs= findViewById(R.id.usando)
 
         ArrayAdapter.createFromResource(
             this,
@@ -75,14 +76,22 @@ class InsertarPaciente : AppCompatActivity() {
     fun addPaciente(view: View) {
 
         sange = grupoSanguineo.selectedItem.toString()
-
+        name = txtName.text.toString()
+        apellido = txtLastName.text.toString()
+        edad = txtEdad.text.toString()
+        peso = txtPeso.text.toString()
+        estatura = txtEstatura.text.toString()
+        CI = txtCI.text.toString()
+        if(checkUs.isChecked)
+        {
+            IDdisp=txtID.text.toString()
+        }
 
         if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(apellido)
             && !TextUtils.isEmpty(edad) && !TextUtils.isEmpty(peso) && !TextUtils.isEmpty(estatura) && !TextUtils.isEmpty(
-                CI
-            )
+                CI)
         ) {
-            if (validate()) {
+            if (true) {
                 database.collection("pacientes").document(CI).set(
                     hashMapOf(
                         "nombre" to name,
@@ -97,21 +106,15 @@ class InsertarPaciente : AppCompatActivity() {
 
 
                         )
-                ).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        Toast.makeText(applicationContext, R.string.addPacient, Toast.LENGTH_LONG)
-                            .show()
-                        onBackPressed()
+                )
                     }
-                }
-            }
-        } else {
+                } else {
             Toast.makeText(applicationContext, R.string.emptyfields, Toast.LENGTH_LONG).show()
-        }
+                }
     }
 
     private fun validate(): Boolean {
-        TODO("Not yet implemented")
+        return true
     }
 
     fun usandoID(view: View) {

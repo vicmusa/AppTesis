@@ -1,5 +1,6 @@
 package com.example.apptesis
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -29,7 +30,11 @@ class MainActivity : AppCompatActivity() {
         }
             true
         }
+        val intent = Intent(this,InsertarPaciente::class.java)
+        startActivity(intent)
+        finish()
     }
+
 
     private fun changeFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
