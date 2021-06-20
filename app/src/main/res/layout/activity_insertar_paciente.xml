@@ -77,7 +77,7 @@
     android:layout_marginEnd="30dp">
 
     <EditText
-        android:id="@+id/etxpeso"
+        android:id="@+id/etxtpeso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
@@ -120,11 +120,35 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.619"
         tools:layout_editor_absoluteX="0dp" />
-<LinearLayout
+
+    <CheckBox
+        android:id="@+id/usando"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Usando"
+        android:onClick="usandoID"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/etxtID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/IDdispositivo"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:visibility="invisible"
+
+        >
+
+    </EditText>
+    <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
-    <Button
+
+        <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -158,5 +182,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.963" />
 </LinearLayout>
+
 
 </LinearLayout>

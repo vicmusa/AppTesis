@@ -15,4 +15,6 @@
     <string name="Estatura">Estatura</string>
     <string name="agregar">HOME</string>
     <string name="emptyfields">Los campos no pueden estar vacios</string>
+    <string name="IDdispositivo">ID del dispositivo</string>
+    <string name="Usando">¿Usando dispositivo?</string>
 </resources>

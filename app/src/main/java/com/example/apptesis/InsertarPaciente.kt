@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
@@ -55,7 +56,7 @@ class InsertarPaciente : AppCompatActivity() {
         txtCI=findViewById(R.id.etxtci)
         txtEstatura=findViewById(R.id.etxtestatura)
         txtPeso=findViewById(R.id.etxtpeso)
-        txtID=findViewById(R.id.etxtid)
+        txtID=findViewById(R.id.etxtID)
 
     }
 
@@ -79,6 +80,18 @@ class InsertarPaciente : AppCompatActivity() {
     }
 
     fun setTipoSangre(view: View) {}
+    fun usandoID(view: View) {
+        if (view is CheckBox) {
+            val checked: Boolean = view.isChecked
+            when (view.id) {
+                R.id.usando -> {
+                    if (checked) {
+                       txtID.visibility = View.VISIBLE
+                    } else {txtID.visibility = View.INVISIBLE
+                    }
+                }
+        }
+    }
 
 
 }
