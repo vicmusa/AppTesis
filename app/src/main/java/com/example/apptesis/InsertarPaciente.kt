@@ -7,10 +7,12 @@ import android.view.View
 import android.widget.*
 import androidx.constraintlayout.motion.widget.TransitionBuilder.validate
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlin.properties.Delegates
 
 class InsertarPaciente : AppCompatActivity() {
-    private lateinit var database: FirebaseFirestore
+    val db = Firebase.firestore
     private lateinit var txtName: EditText
     private lateinit var txtLastName: EditText
     private lateinit var txtEdad: EditText
@@ -23,13 +25,13 @@ class InsertarPaciente : AppCompatActivity() {
     var name by Delegates.notNull<String>()
     var apellido by Delegates.notNull<String>()
     var edad by Delegates.notNull<String>()
-    var CI by Delegates.notNull<String>()
+    var cedula by Delegates.notNull<String>()
     var estatura by Delegates.notNull<String>()
     var peso by Delegates.notNull<String>()
-    var IDdisp = " "
-    var sange by Delegates.notNull<String>()
-    var prevPato = ""
-    var alergias = ""
+    var IDdisp = "ninguna"
+    var sangre by Delegates.notNull<String>()
+    var prevPato = "ninguna"
+    var alergias = "ninguna"
     var tiempo = 0
 
 
@@ -46,7 +48,7 @@ class InsertarPaciente : AppCompatActivity() {
     }
 
     private fun inicializar() {
-        database = FirebaseFirestore.getInstance()
+
         txtName = findViewById(R.id.etxtnombre)
         txtLastName = findViewById(R.id.etxtapellido)
         txtEdad = findViewById(R.id.etxtedad)
@@ -75,43 +77,39 @@ class InsertarPaciente : AppCompatActivity() {
 
     fun addPaciente(view: View) {
 
-        sange = grupoSanguineo.selectedItem.toString()
+        sangre = grupoSanguineo.selectedItem.toString()
         name = txtName.text.toString()
         apellido = txtLastName.text.toString()
         edad = txtEdad.text.toString()
         peso = txtPeso.text.toString()
         estatura = txtEstatura.text.toString()
-        CI = txtCI.text.toString()
+        cedula= txtCI.text.toString()
         if(checkUs.isChecked)
         {
             IDdisp=txtID.text.toString()
         }
 
-        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(apellido)
+        /*if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(apellido)
             && !TextUtils.isEmpty(edad) && !TextUtils.isEmpty(peso) && !TextUtils.isEmpty(estatura) && !TextUtils.isEmpty(
                 CI)
-        ) {
+        ) {*/
             if (true) {
-                database.collection("pacientes").document(CI).set(
-                    hashMapOf(
+                val paciente= hashMapOf(
                         "nombre" to name,
                         "apellido" to apellido,
                         "edad" to edad,
                         "peso" to peso,
                         "estatura" to estatura,
-                        "Tipo de Sangre" to grupoSanguineo,
-                        "Patologías Previas" to prevPato,
-                        "Alergias" to alergias,
-                        "IDenUso" to IDdisp,
-
-
-                        )
-                )
+                        "gruposang" to sangre,
+                        "prevpato" to prevPato,
+                        "alergias" to alergias,
+                        "idenUso" to IDdisp)
+                db.collection("pacientes").document(cedula).set(paciente)
                     }
-                } else {
+                } /*else {
             Toast.makeText(applicationContext, R.string.emptyfields, Toast.LENGTH_LONG).show()
-                }
-    }
+                }*/
+
 
     private fun validate(): Boolean {
         return true
