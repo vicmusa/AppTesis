@@ -2,11 +2,8 @@ package com.example.apptesis
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.View
 import android.widget.*
-import androidx.constraintlayout.motion.widget.TransitionBuilder.validate
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlin.properties.Delegates
@@ -31,7 +28,7 @@ class InsertarPaciente : AppCompatActivity() {
     var IDdisp = "ninguna"
     var sangre by Delegates.notNull<String>()
     var prevPato = "ninguna"
-    var alergias = "ninguna"
+    private var alergias = "ninguna"
     var tiempo = 0
 
 
@@ -71,7 +68,7 @@ class InsertarPaciente : AppCompatActivity() {
         }
     }
 
-    fun cancelar(view: View) {
+    fun cancelar() {
         onBackPressed()
     }
 
