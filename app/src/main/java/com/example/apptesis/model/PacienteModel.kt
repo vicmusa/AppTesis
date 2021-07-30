@@ -1,6 +1,6 @@
-package com.example.apptesis
+package com.example.apptesis.model
 
-data class Paciente(var nombre : String, var ci : String, var apellido : String, var id : String) {
+data class PacienteModel(var nombre : String, var ci : String, var apellido : String, var id : String) {
 
     override fun toString(): String {
         var a = ci+":"+nombre+" "+apellido

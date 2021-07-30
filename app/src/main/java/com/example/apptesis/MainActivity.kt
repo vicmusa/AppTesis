@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.example.apptesis.fragments.DataFragment
-import com.example.apptesis.fragments.HomeFragment
-import com.example.apptesis.fragments.InfoFragment
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
@@ -22,11 +19,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val homeFragment = HomeFragment()
-        val infoFragment = InfoFragment()
-        val dataFragment = DataFragment()
-
         startActivity(Intent(this,TimeLineActivity::class.java))
         // changeFragment(homeFragment)
         inicializar()

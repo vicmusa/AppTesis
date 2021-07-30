@@ -1,39 +1,30 @@
 package com.example.apptesis
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.*
+import com.example.apptesis.model.HistoricalDataModel
+import com.example.apptesis.model.PacienteModel
 import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.formatter.IAxisValueFormatter
-import com.github.mikephil.charting.formatter.IValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
-import com.github.mikephil.charting.utils.ViewPortHandler
 import com.google.firebase.database.*
 import com.google.firebase.database.FirebaseDatabase.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.QueryDocumentSnapshot
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.type.DateTime
 import java.sql.Date
-import java.sql.Timestamp
 import java.text.SimpleDateFormat
 
 class TimeLineActivity : AppCompatActivity() {
-    private var list = mutableListOf<Historical_data>()
-    private var listDato = mutableListOf<Paciente>()
+    private var list = mutableListOf<HistoricalDataModel>()
+    private var listDato = mutableListOf<PacienteModel>()
     private lateinit var db: FirebaseFirestore
     private lateinit var spinner: Spinner
     private lateinit var spinner2: Spinner
@@ -72,12 +63,12 @@ class TimeLineActivity : AppCompatActivity() {
                         val name = documento["nombre"].toString()
                         val ap = documento["apellido"].toString()
                         val id = documento["idenUso"].toString()
-                        val paciente = Paciente(name, ci, ap, id)
+                        val paciente = PacienteModel(name, ci, ap, id)
                         listDato.add(paciente)
                         datos += "${documento.id}: ${documento["nombre"]}\n"
 
                     }
-                    val arraAdapter: ArrayAdapter<Paciente> = ArrayAdapter(this, android.R.layout.simple_spinner_item, listDato)
+                    val arraAdapter: ArrayAdapter<PacienteModel> = ArrayAdapter(this, android.R.layout.simple_spinner_item, listDato)
                     textV.text = datos
                     spinner.adapter = arraAdapter
 
@@ -98,7 +89,7 @@ class TimeLineActivity : AppCompatActivity() {
                         val spo2 = ds.child("spo2").value.toString().toFloat()
                         val hr: Float = ds.child("hr").value.toString().toFloat()
                         val temp = ds.child("temp").value.toString().toFloat()
-                        list.add(Historical_data(ts, spo2, hr, temp))
+                        list.add(HistoricalDataModel(ts, spo2, hr, temp))
                     }
                 } else {
                     Toast.makeText(this@TimeLineActivity, "EL ID NO EXISTE", Toast.LENGTH_LONG).show()
@@ -120,7 +111,7 @@ class TimeLineActivity : AppCompatActivity() {
         val spId = spinner.selectedItemPosition
         textV1.text = listDato[spId].id
         buscardatos(listDato[spId].id)
-        val arrayAdapter: ArrayAdapter<Historical_data> = ArrayAdapter(this@TimeLineActivity, android.R.layout.simple_dropdown_item_1line, list)
+        val arrayAdapter: ArrayAdapter<HistoricalDataModel> = ArrayAdapter(this@TimeLineActivity, android.R.layout.simple_dropdown_item_1line, list)
         spinner2.adapter = arrayAdapter
         graficar()
 
