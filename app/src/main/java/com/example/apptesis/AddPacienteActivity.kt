@@ -8,7 +8,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlin.properties.Delegates
 
-class InsertarPaciente : AppCompatActivity() {
+class AddPacienteActivity : AppCompatActivity() {
     val db = Firebase.firestore
     private lateinit var txtName: EditText
     private lateinit var txtLastName: EditText

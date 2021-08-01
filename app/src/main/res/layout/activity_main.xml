@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,44 +7,63 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-   <!-- <FrameLayout
-        android:id="@+id/fl_wrapper"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/menu_nav" >
-
-
-    </FrameLayout>-->
-
-    <TextView
-        android:id="@+id/hr"
-        android:layout_width="match_parent"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabmenu"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hr"
-        android:textSize="30dp" />
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_home_24" />
 
-    <TextView
-        android:layout_width="match_parent"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabadd"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/agregar"
-        android:id="@+id/temp"
-        android:textSize="30dp"/>
-    <TextView
-        android:layout_width="match_parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="false"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/fabmenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_info_24" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabadd2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="spo2"
-        android:id="@+id/spo2"
-        android:textSize="30dp"/>
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="false"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/fabadd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_home_24" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-    android:id="@+id/menu_nav"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:background="?android:attr/windowBackground"
-    app:itemBackground="@color/purple_500"
-    app:itemIconTint="@color/white"
-    app:itemTextAppearanceInactive="@color/white"
-    app:menu="@menu/nav_menu" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="false"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/fabtimeline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_home_24" />
 
-</LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabtimeline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="false"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/fabadd2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_home_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

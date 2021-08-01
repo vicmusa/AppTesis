@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InsertarPaciente" android:orientation="vertical">
+    tools:context=".AddPacienteActivity" android:orientation="vertical">
 
     <EditText
         android:id="@+id/etxtnombre"

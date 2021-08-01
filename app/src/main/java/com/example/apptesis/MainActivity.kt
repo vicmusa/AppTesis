@@ -3,10 +3,9 @@ package com.example.apptesis
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
-import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.apptesis.databinding.ActivityMainBinding
 import com.google.firebase.database.*
 
 
@@ -14,62 +13,53 @@ class MainActivity : AppCompatActivity() {
     private lateinit var txthr : TextView
     private lateinit var txtspo2 : TextView
     private lateinit var txttemp : TextView
-    private lateinit var mdb: DatabaseReference
+    private lateinit var binding : ActivityMainBinding
+    private var isClikeable = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        startActivity(Intent(this,TimeLineActivity::class.java))
-        // changeFragment(homeFragment)
-        inicializar()
-        verDatos()
-        /*val nav_menu : BottomNavigationView = findViewById(R.id.menu_nav)
-        nav_menu.setOnNavigationItemSelectedListener { when(it.itemId){
-            R.id.home -> changeFragment(homeFragment)
-            R.id.evo -> changeFragment(dataFragment)
-            R.id.info -> changeFragment(infoFragment)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        }
-            true
-        }*/
 
-    }
+        binding.fabmenu.setOnClickListener{
 
-    private fun verDatos() {
-        val listener = object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot)
+            if(!isClikeable)
             {
-                if(snapshot.exists()) {
-                    val spo2 = snapshot.child("spo2").getValue().toString()
-                    val hr = snapshot.child("hr").getValue().toString()
-                    val temp = snapshot.child("temp").getValue().toString()
+                binding.fabadd.visibility = View.VISIBLE
+                binding.fabadd2.visibility = View.VISIBLE
+                binding.fabinfo.visibility = View.VISIBLE
+                binding.fabtimeline.visibility = View.VISIBLE
 
-                    txtspo2.setText(spo2)
-                    txthr.setText(hr)
-                    txttemp.setText(temp)
-                }
-            }
-            override fun onCancelled(error: DatabaseError) {
 
             }
+            else{
 
+                binding.fabadd.visibility = View.GONE
+                binding.fabadd2.visibility = View.GONE
+                binding.fabinfo.visibility = View.GONE
+                binding.fabtimeline.visibility = View.GONE
+
+
+            }
+            binding.fabadd.isClickable = !isClikeable
+            binding.fabadd2.isClickable = !isClikeable
+            binding.fabtimeline.isClickable = !isClikeable
+            binding.fabinfo.isClickable = !isClikeable
+            isClikeable = !isClikeable
         }
-        mdb.child("ASD123").addValueEventListener(listener)
     }
 
-    private fun inicializar() {
-        txthr=findViewById(R.id.hr)
-        txttemp=findViewById(R.id.temp)
-        txtspo2=findViewById(R.id.spo2)
-        mdb=FirebaseDatabase.getInstance().getReference("Sensores")
+    private fun goto(identify : Int){
+
+        when(identify)
+        {
+            1 -> startActivity(Intent(this,AddPacienteActivity::class.java))
+            2 -> startActivity(Intent(this,TimeLineActivity::class.java))
+            3 -> startActivity(Intent(this,InfoActivity::class.java))
+        }
+
     }
-
-
-   /* private fun changeFragment(fragment: Fragment) =
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fl_wrapper,fragment)
-            commit()
-        }*/
 
 
 }
