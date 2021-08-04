@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 class RetrieveDataUserCase {
 
     suspend operator fun invoke():List<PacienteModel>{
-
+        // AQUI CAMBIARA A ROOM!
         val QueryData = QueryData()
         val result = QueryData()
         val listPaciente = mutableListOf<PacienteModel>()

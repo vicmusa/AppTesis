@@ -11,7 +11,7 @@ class QueryData {
     suspend operator fun invoke() : QuerySnapshot? {
 
         return withContext(Dispatchers.IO){FirebaseHelper.HelperPacientes().whereNotEqualTo("idenUso", "ninguna")
-            .get().await()
+            .get().await() // CAMBIAR POR BUSCAR EN ROOM
         }
     }
 }

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bluelite">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Añadir Pacientes"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp" />
+    </LinearLayout>
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="vertical">
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/cédula"
+             android:textSize="19dp"
+             android:layout_marginTop="15dp"
+             android:layout_marginStart="20dp"/>
+         <EditText
+             android:id="@+id/dialogCI"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:layout_marginStart="20dp"
+             android:layout_marginEnd="20dp"
+             android:inputType="number"
+             android:hint="12345678"/>
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/IDdispositivo"
+             android:textSize="19dp"
+
+             android:layout_marginTop="20dp"
+             android:layout_marginStart="20dp"/>
+         <EditText
+             android:id="@+id/dialogID"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:layout_marginStart="20dp"
+             android:hint="FA32D3"
+             android:layout_marginEnd="20dp"/>
+         <LinearLayout
+             android:layout_marginTop="15dp"
+             android:layout_marginEnd="20dp"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="right"
+             android:layout_marginBottom="20dp">
+             <TextView
+                 android:textColor="@color/bluelite"
+                 android:id="@+id/dialogCancel"
+                 android:layout_marginEnd="10dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/Cancelar"
+                 android:textSize="15dp"/>
+             <TextView
+                 android:id="@+id/dialogAdd"
+                 android:textColor="@color/bluelite"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/agregar"
+                 android:textSize="15dp"/>
+         </LinearLayout>
+
+     </LinearLayout>
+
+
+</LinearLayout>

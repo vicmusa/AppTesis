@@ -2,6 +2,7 @@ package com.example.apptesis
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import com.google.firebase.firestore.ktx.firestore
@@ -30,12 +31,16 @@ class AddPacienteActivity : AppCompatActivity() {
     var prevPato = "ninguna"
     private var alergias = "ninguna"
     var tiempo = 0
+    var age= (0..100).toList()
+    var long = (100..230).toList()
+    var weigth = (30.0..150.0).toString()
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_insertar_paciente)
+        Log.e("LISTA", age.toString())
         inicializar()
         prepareActionBar()
     }
