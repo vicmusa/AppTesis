@@ -6,18 +6,35 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bluelite"
+        android:orientation="horizontal">
     <TextView
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:background="@color/bluelite"
         android:textColor="@color/white"
-        android:gravity="center"
+        android:gravity="left"
         android:id="@+id/tvName"
-        android:textSize="40sp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:textSize="30sp"
+        android:paddingStart="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         tools:text="Victor Castillo" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/arrowRecycler"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="end"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:lottie_colorFilter="@color/white"
+            android:layout_marginStart="100dp"
+            app:lottie_rawRes="@raw/arrow">
+        </com.airbnb.lottie.LottieAnimationView>
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +45,7 @@
             android:id="@+id/tvHr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="80sp"
+            android:textSize="40sp"
             tools:text="90"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp">
@@ -37,7 +54,7 @@
             android:id="@+id/tvSpo2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="80sp"
+            android:textSize="40sp"
             tools:text="90"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp">
@@ -46,7 +63,7 @@
             android:id="@+id/tvTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="80sp"
+            android:textSize="40sp"
             tools:text="90"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp">

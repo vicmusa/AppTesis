@@ -12,11 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTesis">
-        <activity android:name=".InfoActivity"></activity>
-        <activity android:name=".TimeLineActivity" />
+        <activity android:name=".view.AddPacientActivity"></activity>
+        <activity android:name=".InfoActivity" />
+        <activity android:name=".view.TimeLineActivity" />
         <activity
             android:name=".AddPacienteActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".view.MainActivity" />
         <activity
             android:name=".SplashScreenActivity"
             android:theme="@style/SplashScreen">
@@ -26,7 +27,7 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".view.MainActivity" />
     </application>
 
 </manifest>

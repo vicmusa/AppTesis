@@ -5,7 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.example.apptesis.core.FirebaseHelper
 import com.google.firebase.database.*
 import com.example.apptesis.model.PacienteModel
@@ -27,6 +29,7 @@ class PacientesAdapter(val listPacientes:List<PacienteModel>) :  RecyclerView.Ad
 
     class PacienteHolder(val view: View):RecyclerView.ViewHolder(view){
 
+            val arrow = view.findViewById(R.id.arrowRecycler) as LottieAnimationView
             val tvName = view.findViewById(R.id.tvName) as TextView
             val tvTemp = view.findViewById(R.id.tvTemp) as TextView
             val tvHr = view.findViewById(R.id.tvHr) as TextView
@@ -34,7 +37,7 @@ class PacientesAdapter(val listPacientes:List<PacienteModel>) :  RecyclerView.Ad
             val infoTab = view.findViewById(R.id.infoTab) as LinearLayout
         fun render(paciente : PacienteModel)
         {
-                tvName.text=paciente.nombre
+                tvName.text= paciente.nombre +" "+ paciente.apellido
             val listener = object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot)
                 {
@@ -54,17 +57,20 @@ class PacientesAdapter(val listPacientes:List<PacienteModel>) :  RecyclerView.Ad
 
             }
             FirebaseHelper.HelperSensores().child(paciente.id).addValueEventListener(listener)
-            itemView.setOnClickListener { View.OnClickListener {
-
+            arrow.setOnClickListener {
                 if(infoTab.visibility==View.GONE)
                 {
                     infoTab.visibility=View.VISIBLE
+                    arrow.setMinAndMaxProgress(0.0f,0.5f)
+                    arrow.playAnimation()
                 }
                 else{
                     infoTab.visibility= View.GONE
+                    arrow.setMinAndMaxProgress(0.5f,1.0f)
+                    arrow.playAnimation()
                 }
 
-            } }
+             }
         }
         }
 

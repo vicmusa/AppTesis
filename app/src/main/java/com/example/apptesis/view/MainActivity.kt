@@ -1,4 +1,4 @@
-package com.example.apptesis
+package com.example.apptesis.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,12 +9,13 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
+import com.example.apptesis.AddPacienteActivity
+import com.example.apptesis.InfoActivity
+import com.example.apptesis.PacientesAdapter
 import com.example.apptesis.databinding.ActivityMainBinding
 import com.example.apptesis.databinding.ItemDialogBinding
 import com.example.apptesis.model.PacienteModel
 import com.example.apptesis.viewmodel.MainViewModel
-import com.google.firebase.database.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,19 +35,33 @@ class MainActivity : AppCompatActivity() {
         bindingDialog = ItemDialogBinding.inflate(layoutInflater)
         setContentView(binding.root)
         createDialog()
-        mainViewModel.ask1.observe(this, Observer {
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Cambiar Usuario?")
-            builder.setMessage("Desea Cambiar el ID del Usuario?")
+
+        mainViewModel.isLoading.observe(this, Observer {
+            if(it)
+            {
+                binding.loading.visibility = View.VISIBLE
+                binding.loading.playAnimation()
+            }
+            else
+            {
+                binding.loading.visibility = View.GONE
+            }
         })
+        mainViewModel.idNoExiste.observe(this, Observer {
+            openDialog()
+            Toast.makeText(this,"El ID no esta en la base de datos",Toast.LENGTH_LONG).show()
+        })
+
         mainViewModel.paciente.observe(this, Observer {
             list.add(it)
             binding.rvPacientes.adapter= PacientesAdapter(list)
              })
-        mainViewModel.noAsignado.observe(this, Observer {
-            Toast.makeText(this, "EL PACIENTE NO TIENE ID ASIGNADO",Toast.LENGTH_LONG).show()
+        mainViewModel.asignado.observe(this, Observer {
+            openDialog()
+            Toast.makeText(this, "EL ID Selecionacionado ya esta asignado al Paciente de CI ${it.ci}",Toast.LENGTH_LONG).show()
         })
         mainViewModel.noExiste.observe(this, Observer {
+            openDialog()
             Toast.makeText(this, "LA CEDULA NO EXISTE O EL ID INGRESADO NO ESTA ASIGNADO A NINGUN PACIENTE", Toast.LENGTH_LONG).show()
         })
 
@@ -57,7 +72,6 @@ class MainActivity : AppCompatActivity() {
                 binding.fabadd2.visibility = View.VISIBLE
                 binding.fabinfo.visibility = View.VISIBLE
                 binding.fabtimeline.visibility = View.VISIBLE
-
 
             }
             else{
@@ -89,8 +103,9 @@ class MainActivity : AppCompatActivity() {
         }
         bindingDialog.dialogAdd.setOnClickListener {
             val ci=bindingDialog.dialogCI.text.toString()
-            val id = bindingDialog.dialogID.text.toString()
-            mainViewModel.addData(ci,id)  }
+            val id = bindingDialog.dialogID.text.toString().toUpperCase()
+            mainViewModel.addData(ci,id)
+            alertDialog.dismiss()}
 
         bindingDialog.dialogCancel.setOnClickListener{ alertDialog.dismiss() }
     }
@@ -110,9 +125,9 @@ class MainActivity : AppCompatActivity() {
 
         when(identify)
         {
-            1 -> startActivity(Intent(this,AddPacienteActivity::class.java))
-            2 -> startActivity(Intent(this,TimeLineActivity::class.java))
-            3 -> startActivity(Intent(this,InfoActivity::class.java))
+            1 -> startActivity(Intent(this, AddPacienteActivity::class.java))
+            2 -> startActivity(Intent(this, TimeLineActivity::class.java))
+            3 -> startActivity(Intent(this, InfoActivity::class.java))
         }
 
     }

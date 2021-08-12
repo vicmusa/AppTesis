@@ -1,4 +1,4 @@
-package com.example.apptesis
+    package com.example.apptesis.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
