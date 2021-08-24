@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity() {
 
         when(identify)
         {
-            1 -> startActivity(Intent(this, AddPacienteActivity::class.java))
+            1 -> startActivity(Intent(this, AddPacientActivity::class.java))
             2 -> startActivity(Intent(this, TimeLineActivity::class.java))
             3 -> startActivity(Intent(this, InfoActivity::class.java))
         }

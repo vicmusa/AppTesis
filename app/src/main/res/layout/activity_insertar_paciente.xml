@@ -126,7 +126,6 @@
         android:id="@+id/usando"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Usando"
         android:onClick="usandoID"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"

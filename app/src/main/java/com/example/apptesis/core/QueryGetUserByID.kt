@@ -11,7 +11,6 @@ class QueryGetUserByID {
     suspend operator fun invoke(id: String): QuerySnapshot? {
 
         return withContext(Dispatchers.IO) {
-            Log.e("ERROR","PUDE ENTRAR AQUI")
             FirebaseHelper.HelperPacientes().whereEqualTo("idenUso", id).limit(1).get().await()
         }
     }

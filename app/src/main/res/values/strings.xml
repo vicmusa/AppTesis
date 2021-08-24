@@ -15,10 +15,10 @@
     <string name="emptyfields">Los campos no pueden estar vacios</string>
     <string name="addPacient">Paciente Creado Correctamente</string>
     <string name="IDdispositivo">ID del dispositivo</string>
-    <string name="Usando">¿Usando dispositivo?</string>
     <string name="Peso">Peso</string>
     <string name="Estatura">Estatura</string>
     <string name="title_activity_add_pacient">AddPacientActivity</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -33,4 +33,8 @@
     <string name="years">Años</string>
     <string name="centimeters">cm</string>
     <string name="kilograms">Kg</string>
+    <string name="patoprev">Patologías Previas</string>
+    <string name="gruposang">Grupo Sanguíneo</string>
+    <string name="ninguna">Ninguna</string>
+    <string name="grupo_san">Grupo Sanguíneo</string>
 </resources>

@@ -4,35 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    android:background="@drawable/recycler">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/bluelite"
-        android:orientation="horizontal">
-    <TextView
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textColor="@color/white"
-        android:gravity="left"
-        android:id="@+id/tvName"
-        android:textSize="30sp"
-        android:paddingStart="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Victor Castillo" />
+        android:orientation="horizontal"
+        android:backgroundTint="@color/bluelite"
+        >
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:gravity="left"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            tools:text="Victor Castillo" />
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/arrowRecycler"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="0dp"
+            android:layout_height="30sp"
+            android:layout_marginTop="10sp"
+            android:layout_weight="0.2"
             android:gravity="end"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             app:lottie_colorFilter="@color/white"
-            android:layout_marginStart="100dp"
-            app:lottie_rawRes="@raw/arrow">
-        </com.airbnb.lottie.LottieAnimationView>
+            app:lottie_rawRes="@raw/arrow"></com.airbnb.lottie.LottieAnimationView>
     </LinearLayout>
 
 
@@ -69,18 +71,20 @@
             android:layout_marginEnd="30dp">
         </TextView>
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/infoTab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/red"
         android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        tools:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="40sp"
-            android:text="AQUI VA TODO LO REFERENTE AL PACIENTE QUE NO ES NECESARIA MOSTRAR SIEMPRE">
+            android:text="AQUI VA TODO LO REFERENTE AL PACIENTE QUE NO ES NECESARIA MOSTRAR SIEMPRE"
+            android:textSize="40sp">
 
         </TextView>
     </LinearLayout>
