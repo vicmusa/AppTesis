@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list android:opacity="opaque"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:drawable="@color/bluelite"/>
+    <item android:drawable="@drawable/logo_app"
+        android:top="100dp"
+        android:bottom="260dp"
+        android:left="30dp"
+        android:right="30dp"/>
+    <item android:drawable="@drawable/app_name_text"
+        android:gravity="bottom"
+        android:bottom="160dp"
+        android:left="20dp"
+        android:right="20dp"/>
+</layer-list>

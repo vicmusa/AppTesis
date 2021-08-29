@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InsertarPaciente" android:orientation="vertical">
+    tools:context=".AddPacienteActivity" android:orientation="vertical">
 
     <EditText
         android:id="@+id/etxtnombre"
@@ -126,7 +126,6 @@
         android:id="@+id/usando"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Usando"
         android:onClick="usandoID"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
@@ -174,7 +173,6 @@
         android:layout_marginEnd="30dp"
         android:layout_marginTop="20dp"
         app:backgroundTint="#0323F4"
-        android:onClick="cancelar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.11"

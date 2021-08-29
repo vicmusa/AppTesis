@@ -11,11 +11,30 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="agregar_paciente">Agregar paciente</string>
     <string name="Cancelar">Cancelar</string>
-    <string name="agregar">HOME</string>
+    <string name="agregar">Agregar</string>
     <string name="emptyfields">Los campos no pueden estar vacios</string>
     <string name="addPacient">Paciente Creado Correctamente</string>
     <string name="IDdispositivo">ID del dispositivo</string>
-    <string name="Usando">¿Usando dispositivo?</string>
     <string name="Peso">Peso</string>
     <string name="Estatura">Estatura</string>
+    <string name="title_activity_add_pacient">AddPacientActivity</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="ciHint">20687321</string>
+    <string name="lastNameHint">Perez</string>
+    <string name="nameHint">Pedro</string>
+    <string name="years">Años</string>
+    <string name="centimeters">cm</string>
+    <string name="kilograms">Kg</string>
+    <string name="patoprev">Patologías Previas</string>
+    <string name="gruposang">Grupo Sanguíneo</string>
+    <string name="ninguna">Ninguna</string>
+    <string name="grupo_san">Grupo Sanguíneo</string>
 </resources>
