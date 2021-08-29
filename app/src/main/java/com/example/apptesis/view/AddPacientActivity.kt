@@ -20,18 +20,27 @@ class AddPacientActivity : AppCompatActivity() {
         binding.npPeso.maxValue = 250
         binding.npPeso.minValue = 30
 
+        ArrayAdapter.createFromResource(this, R.array.PrevPato,android.R.layout.simple_spinner_item).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.spinner3.adapter = adapter }
         ArrayAdapter.createFromResource(this, R.array.Gruposang,android.R.layout.simple_spinner_item).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.spinner2.adapter = adapter }
 
         binding.btnAddPato.setOnClickListener {
-            if(binding.tvPrevpato.equals("Ninguna"))
+            if(binding.tvPrevpato.text.toString().equals("Ninguna"))
             {
                 binding.tvPrevpato.text = binding.spinner3.selectedItem.toString()
             }
             else
             {
+                if(binding.tvPrevpato.text.toString().contains(binding.spinner3.selectedItem.toString()))
+                {
+                    Toast.makeText(this,"Ya la patologia seleccionada está incluida en la lista",Toast.LENGTH_LONG).show()
+                }
+                else{
                 binding.tvPrevpato.text = binding.tvPrevpato.text.toString() + "/" + binding.spinner3.selectedItem.toString()
+            }
             }
         }
         binding.btnAddAler.setOnClickListener {
@@ -41,7 +50,8 @@ class AddPacientActivity : AppCompatActivity() {
             }
             else
             {
-                binding.tvAlergias.text = binding.tvAlergias.text.toString() + "/" + binding.spinner4.selectedItem.toString()
+                    binding.tvAlergias.text =
+                        binding.tvAlergias.text.toString() + "/" + binding.spinner4.selectedItem.toString()
             }
         }
         binding.btnCanPato.setOnClickListener {
@@ -61,7 +71,7 @@ class AddPacientActivity : AppCompatActivity() {
             val peso = binding.npPeso.value.toString()
             val prevpato = binding.tvPrevpato.text.toString()
             val alergias = binding.tvAlergias.text.toString()
-            val date = System.currentTimeMillis()
+            val date = System.currentTimeMillis().toString()
 
             if(name.isNotBlank() && apellido.isNotBlank() && cedula.isNotBlank() && id.isNotBlank())
             {
@@ -80,7 +90,7 @@ class AddPacientActivity : AppCompatActivity() {
 
             }
             else{
-                Toast.makeText(this, "Los Campos no pueden estar vacios",Toast.LENGTH_LONG).show()
+                Toast.makeText(this, R.string.emptyfields,Toast.LENGTH_LONG).show()
             }
 
         }

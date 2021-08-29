@@ -10,4 +10,18 @@
         <item>B-</item>
         <item>B+</item>
     </string-array>
+    <string-array name="PrevPato">
+        <item>Edad Avanzada</item>
+        <item>Problemas Pulmonares</item>
+        <item>Enfermedas Cardíacas</item>
+        <item>Diabetes</item>
+        <item>Obesidad</item>
+        <item>Cancer</item>
+        <item>Transtornos Sanguíneos</item>
+        <item>Sistema inmunitario debilitado</item>
+        <item>Enfermedad Renal</item>
+        <item>Hepatitis</item>
+        <item>Sindrome de Down</item>
+
+    </string-array>
 </resources>
