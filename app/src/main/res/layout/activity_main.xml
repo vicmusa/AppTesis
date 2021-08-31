@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/darkwhite">
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loading"
         android:layout_width="80dp"
@@ -87,7 +88,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPacientes"
-            android:elevation="6sp"
+            android:elevation="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />

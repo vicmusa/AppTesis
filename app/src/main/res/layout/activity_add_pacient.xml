@@ -7,6 +7,13 @@
     tools:context=".view.AddPacientActivity"
     android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
     <EditText
         android:hint="@string/nombre"
         android:id="@+id/etNombre"
@@ -252,16 +259,14 @@
             android:layout_weight="0.5"/>
     </LinearLayout>
 
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
         android:text="@string/agregar_paciente"
         android:id="@+id/btnAddPatient">
+
     </Button>
-
-
-
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

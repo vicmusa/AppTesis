@@ -14,18 +14,25 @@ import kotlinx.coroutines.withContext
 class RetrieveDataUserCase {
 
     suspend operator fun invoke():List<PacienteModel>{
-        // AQUI CAMBIARA A ROOM!
+        // AQUI CAMBIARA A ROOM! O SHARED PREFERENCES
         val QueryData = QueryData()
         val result = QueryData()
         val listPaciente = mutableListOf<PacienteModel>()
 
         if (result != null) for(documento in result) {
             // Obtengo todos los documentos que tienen ID y los inserto en una lista
-            val ci = documento.id
-            val name = documento["nombre"].toString()
+            val ci = documento.id // CAMBIARLO A TO OBJECT
+            val nombre = documento["nombre"].toString()
             val ap = documento["apellido"].toString()
-            val id = documento["idenUso"].toString()
-            val paciente = PacienteModel(name, ci, ap, id)
+            val idDisp = documento["idenUso"].toString()
+            val edad = documento["edad"].toString()
+            val estatura = documento["estatura"].toString()
+            val sangre = documento["gruposang"].toString()
+            val peso = documento["peso"].toString()
+            val alergias = documento["alergias"].toString()
+            val prepato = documento["prevpato"].toString()
+            val fecha = documento["fecha"].toString()
+            val paciente = PacienteModel(nombre,ci,ap,idDisp,edad,estatura,sangre,peso, alergias, prepato, fecha)
             listPaciente.add(paciente)
 
         }

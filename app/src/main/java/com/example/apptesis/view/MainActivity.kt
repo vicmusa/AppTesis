@@ -9,9 +9,11 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
-import com.example.apptesis.AddPacienteActivity
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.apptesis.InfoActivity
 import com.example.apptesis.PacientesAdapter
+import com.example.apptesis.core.Pref
 import com.example.apptesis.databinding.ActivityMainBinding
 import com.example.apptesis.databinding.ItemDialogBinding
 import com.example.apptesis.model.PacienteModel
@@ -28,12 +30,19 @@ class MainActivity : AppCompatActivity() {
     private lateinit var alertDialog: AlertDialog
     private val mainViewModel : MainViewModel by viewModels()
     private  var list = mutableListOf<PacienteModel>()
+    private var toSaveList = mutableListOf<PacienteModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         bindingDialog = ItemDialogBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val pref = Pref(this)
+        list = pref.getList()!!.toMutableList()
+        toSaveList = list
+
+        val adapter = PacientesAdapter(list)
+        binding.rvPacientes.adapter = adapter
         createDialog()
 
         mainViewModel.isLoading.observe(this, Observer {
@@ -51,10 +60,10 @@ class MainActivity : AppCompatActivity() {
             openDialog()
             Toast.makeText(this,"El ID no esta en la base de datos",Toast.LENGTH_LONG).show()
         })
-
         mainViewModel.paciente.observe(this, Observer {
-            list.add(it)
-            binding.rvPacientes.adapter= PacientesAdapter(list)
+            toSaveList.add(it)
+            pref.save(toSaveList)
+            adapter.addItem(it)
              })
         mainViewModel.asignado.observe(this, Observer {
             openDialog()
@@ -64,7 +73,6 @@ class MainActivity : AppCompatActivity() {
             openDialog()
             Toast.makeText(this, "LA CEDULA NO EXISTE O EL ID INGRESADO NO ESTA ASIGNADO A NINGUN PACIENTE", Toast.LENGTH_LONG).show()
         })
-
         binding.fabmenu.setOnClickListener{
             if(!isClikeable)
             {
@@ -106,8 +114,30 @@ class MainActivity : AppCompatActivity() {
             val id = bindingDialog.dialogID.text.toString().toUpperCase()
             mainViewModel.addData(ci,id)
             alertDialog.dismiss()}
+        bindingDialog.dialogCancel.setOnClickListener{
+            alertDialog.dismiss() }
 
-        bindingDialog.dialogCancel.setOnClickListener{ alertDialog.dismiss() }
+       val itemTouchHelperCallback = object : ItemTouchHelper.Callback(){
+           override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+               return makeMovementFlags(ItemTouchHelper.UP ,ItemTouchHelper.RIGHT)
+           }
+
+           override fun onMove(
+               recyclerView: RecyclerView,
+               viewHolder: RecyclerView.ViewHolder,
+               target: RecyclerView.ViewHolder
+           ): Boolean {
+               TODO("Not yet implemented")
+           }
+
+           override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+               toSaveList.removeAt(viewHolder.adapterPosition)
+               pref.save(toSaveList)
+               adapter.deleteItem(viewHolder.adapterPosition)
+           }
+       }
+    val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
+        itemTouchHelper.attachToRecyclerView(binding.rvPacientes)
     }
 
     private fun createDialog() {

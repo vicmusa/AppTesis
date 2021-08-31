@@ -1,5 +1,6 @@
 package com.example.apptesis
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +12,11 @@ import com.airbnb.lottie.LottieAnimationView
 import com.example.apptesis.core.FirebaseHelper
 import com.google.firebase.database.*
 import com.example.apptesis.model.PacienteModel
+import java.sql.Date
+import java.text.DateFormat
 
 
-class PacientesAdapter(val listPacientes:List<PacienteModel>) :  RecyclerView.Adapter<PacientesAdapter.PacienteHolder>() {
+class PacientesAdapter(val listPacientes:MutableList<PacienteModel>) :  RecyclerView.Adapter<PacientesAdapter.PacienteHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PacienteHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -26,6 +29,16 @@ class PacientesAdapter(val listPacientes:List<PacienteModel>) :  RecyclerView.Ad
         holder.render(listPacientes[position])
     }
 
+    fun deleteItem(i : Int)
+    {
+        Log.e("This", "acatoy")
+        notifyItemRemoved(i)
+    }
+    fun addItem(paciente: PacienteModel)
+    {
+        notifyItemInserted(listPacientes.size)
+    }
+
 
     class PacienteHolder(val view: View):RecyclerView.ViewHolder(view){
 
@@ -35,9 +48,26 @@ class PacientesAdapter(val listPacientes:List<PacienteModel>) :  RecyclerView.Ad
             val tvHr = view.findViewById(R.id.tvHr) as TextView
             val tvSpo2 = view.findViewById(R.id.tvSpo2) as TextView
             val infoTab = view.findViewById(R.id.infoTab) as LinearLayout
+            val tvCI = view.findViewById(R.id.tvCI) as TextView
+            val tvFecha = view.findViewById(R.id.tvFecha) as TextView
+            val tvEdad = view.findViewById(R.id.tvEdad) as TextView
+            val tvPeso = view.findViewById(R.id.tvPeso) as TextView
+            val tvEstatura = view.findViewById(R.id.tvEstatura) as TextView
+            val tvPrevpato = view.findViewById(R.id.tvPrevPato) as TextView
+            val tvAlergias = view.findViewById(R.id.tvALERGIAS) as TextView
+            val tvID = view.findViewById(R.id.tvID) as TextView
         fun render(paciente : PacienteModel)
         {
                 tvName.text= paciente.nombre +" "+ paciente.apellido
+                tvCI.text = "Cédula: "+paciente.ci
+                val fdate = DateFormat.getDateInstance()
+                tvFecha.text = "Fecha de Inicio: "+ fdate.format(Date(paciente.fecha.toLong()))
+                tvEdad.text = "Edad: "+paciente.edad + "años"
+                tvPeso.text = "Peso: "+paciente.peso + "Kg"
+                tvEstatura.text = "Estatura: "+paciente.estatura + "cm"
+                tvPrevpato.text = "Factores de Riesgo: "+paciente.prepato
+                tvAlergias.text ="Alergias: "+paciente.alergias
+                tvID.text ="Dispositivo en uso: "+paciente.id
             val listener = object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot)
                 {
