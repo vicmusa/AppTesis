@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.apptesis.core.Pref
 import com.example.apptesis.model.PacienteModel
 import com.example.apptesis.usercase.GetDataUserCase
 import com.example.apptesis.usercase.GraphUserCase
@@ -20,18 +21,18 @@ class TimeLineViewModel : ViewModel() {
     val GetDataUserCase = GetDataUserCase()
     val GraphUserCase = GraphUserCase()
 
-    fun createSpinner(){
+    fun createSpinner(pref: Pref){
         viewModelScope.launch{
-            val result =RetrieveDataUserCase()
+            val result =RetrieveDataUserCase(pref)
             listToAdapter.postValue(result)
         }
     }
-    fun graph(id : String){
+    fun graph(id : String,fecha : String){
         Log.e("LISTA","ENTRE AQUI")
         viewModelScope.launch {
             Log.e("LISTA", "ESTOY EN LA CORRUTINA")
             isLoading.postValue(true)
-            val result = GetDataUserCase(id)
+            val result = GetDataUserCase(id,fecha)
             Log.e("LISTA", result.toString())
             val ts = mutableListOf<Long>()
             for(it in result)

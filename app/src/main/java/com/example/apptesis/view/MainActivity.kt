@@ -18,6 +18,7 @@ import com.example.apptesis.databinding.ActivityMainBinding
 import com.example.apptesis.databinding.ItemDialogBinding
 import com.example.apptesis.model.PacienteModel
 import com.example.apptesis.viewmodel.MainViewModel
+import com.google.android.material.snackbar.Snackbar
 
 
 class MainActivity : AppCompatActivity() {
@@ -134,6 +135,7 @@ class MainActivity : AppCompatActivity() {
                toSaveList.removeAt(viewHolder.adapterPosition)
                pref.save(toSaveList)
                adapter.deleteItem(viewHolder.adapterPosition)
+               val snackbar = Snackbar.make(binding.root,"Paciente eliminado de la lista",Snackbar.LENGTH_LONG).show()
            }
        }
     val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
