@@ -37,4 +37,8 @@
     <string name="gruposang">Grupo Sanguíneo</string>
     <string name="ninguna">Ninguna</string>
     <string name="grupo_san">Grupo Sanguíneo</string>
+    <string name="ci_rv">Cédula: %s</string>
+    <string name="ritmo_cardiaco">Ritmo Cardiaco</string>
+    <string name="oxigenaci_n">Oxigenación</string>
+    <string name="temperatura">Temperatura</string>
 </resources>

@@ -23,7 +23,7 @@ class GraphUserCase {
         val lineSpo2 = LineDataSet(spo2Data, "SPO2")
         val lineHr = LineDataSet(hrData, "HR")
         val lineTemp = LineDataSet(tempData, "Temp")
-        lineSpo2.color = R.color.teal_700
+        lineSpo2.color = R.color.orange
         lineHr.color = R.color.red
         lineSpo2.color = R.color.blue
         val dataSet: ArrayList<ILineDataSet> = arrayListOf()

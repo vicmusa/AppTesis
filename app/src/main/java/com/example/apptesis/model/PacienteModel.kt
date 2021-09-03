@@ -1,11 +1,20 @@
 package com.example.apptesis.model
 
-import com.google.gson.annotations.SerializedName
+data class PacienteModel(var nombre : String,
+                         var ci : String,
+                         var apellido : String,
+                         var id : String,
+                         val edad : String,
+                         val estatura : String,
+                         val sangre : String,
+                         val peso : String,
+                         val alergias : String,
+                         val prepato : String,
+                         val fecha : String ) {
 
-data class PacienteModel(@SerializedName("nombre") var nombre : String, @SerializedName("id") var ci : String, @SerializedName("apellido") var apellido : String, @SerializedName("idenUSo") var id : String) {
 
+    constructor() : this ("0","0","0","0","0","0","0","0","0","0","0",)
 
-    constructor() : this ("0","0","0","0")
     override fun toString(): String {
         var a = ci+":"+nombre+" "+apellido
         return a

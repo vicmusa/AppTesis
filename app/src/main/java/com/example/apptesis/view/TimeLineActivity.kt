@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.*
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import com.example.apptesis.core.Pref
 import com.example.apptesis.databinding.ActivityTimeLineBinding
 import com.example.apptesis.model.HistoricalDataModel
 import com.example.apptesis.model.PacienteModel
@@ -37,9 +38,14 @@ class TimeLineActivity : AppCompatActivity() {
         binding = ActivityTimeLineBinding.inflate(layoutInflater)
         setContentView(binding.root)
         var valorX = binding.grafico.xAxis
-        timeLineViewModel.createSpinner()
+        var pref = Pref(this)
+        timeLineViewModel.createSpinner(pref)
         timeLineViewModel.listToAdapter.observe(this, Observer {
             binding.progressBar2.visibility= View.GONE
+            if(it.isEmpty())
+            {
+                binding.button3.visibility = View.GONE
+            }
             val arrayAdapter: ArrayAdapter<PacienteModel> =
                 ArrayAdapter(this, android.R.layout.simple_spinner_item, it)
             binding.spinner.adapter = arrayAdapter
@@ -68,7 +74,7 @@ class TimeLineActivity : AppCompatActivity() {
             binding.grafico.data = it
             binding.grafico.invalidate()
         })
-        binding.button3.setOnClickListener { timeLineViewModel.graph(list[binding.spinner.selectedItemPosition].id) }
+        binding.button3.setOnClickListener { timeLineViewModel.graph(list[binding.spinner.selectedItemPosition].id,list[binding.spinner.selectedItemPosition].fecha) }
         title = "Time Line"
     }
     }

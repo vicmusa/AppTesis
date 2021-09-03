@@ -12,18 +12,21 @@ import kotlinx.coroutines.tasks.await
 
 class GetDataUserCase {
 
-    suspend operator fun invoke(id: String): MutableList<HistoricalDataModel> {
+    suspend operator fun invoke(id: String, fecha : String): MutableList<HistoricalDataModel> {
         val QueryHistoricalData = QueryHistoricalData()
             var list = mutableListOf<HistoricalDataModel>()
              val result = QueryHistoricalData(id)
         if (result != null) {
             for(ds in result.children) {
                 val ts = ds.key.toString().toLong()
-                val spo2 = ds.child("spo2").value.toString().toFloat()
-                val hr: Float = ds.child("hr").value.toString().toFloat()
-                val temp = ds.child("temp").value.toString().toFloat()
-                list.add(HistoricalDataModel(ts, spo2, hr, temp))
-                Log.e("LISTA", list.toString())
+                if(ts >= fecha.toLong()/1000) {
+                    Log.e("LISTA", "AQUI" + ts.toString())
+                    val spo2 = ds.child("spo2").value.toString().toFloat()
+                    val hr: Float = ds.child("hr").value.toString().toFloat()
+                    val temp = ds.child("temp").value.toString().toFloat()
+                    list.add(HistoricalDataModel(ts, spo2, hr, temp))
+                    Log.e("LISTA", list.toString())
+                }
             }
         }
         Log.e("LISTA", list.toString() +" VICTO EPA")

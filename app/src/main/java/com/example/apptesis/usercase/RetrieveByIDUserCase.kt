@@ -18,11 +18,18 @@ class RetrieveByIDUserCase {
             if(!result.documents.isEmpty())
             {
                 val a=result.documents[0]
-                val ci = a.id
-                val name = a["nombre"].toString()
+                val ci = a.id // CAMBIARLO A TO OBJECT
+                val nombre = a["nombre"].toString()
                 val ap = a["apellido"].toString()
-                val id = a["idenUso"].toString()
-                paciente = PacienteModel(name, ci, ap, id)
+                val idDisp = a["idenUso"].toString()
+                val edad = a["edad"].toString()
+                val estatura = a["estatura"].toString()
+                val sangre = a["gruposang"].toString()
+                val peso = a["peso"].toString()
+                val alergias = a["alergias"].toString()
+                val prepato = a["prevpato"].toString()
+                val fecha = a["fecha"].toString()
+                paciente = PacienteModel(nombre,ci,ap,idDisp,edad,estatura,sangre,peso, alergias, prepato, fecha)
             }
             Log.e("ERROR","ahora aqui")
 

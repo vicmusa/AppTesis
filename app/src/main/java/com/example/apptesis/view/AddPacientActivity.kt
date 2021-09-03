@@ -2,13 +2,17 @@ package com.example.apptesis.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.viewModels
 import com.example.apptesis.R
 import com.example.apptesis.databinding.ActivityAddPacientBinding
+import com.example.apptesis.viewmodel.AddPacientViewModel
 
 class AddPacientActivity : AppCompatActivity() {
     private lateinit var binding : ActivityAddPacientBinding
+    private val vM : AddPacientViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityAddPacientBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -20,6 +24,18 @@ class AddPacientActivity : AppCompatActivity() {
         binding.npPeso.maxValue = 250
         binding.npPeso.minValue = 30
 
+        vM.tipeExiste.observe(this,{
+            var a = ""
+            Log.e("THis",it.toString())
+            when(it)
+            {
+                1 -> a = "El paciente ya existe"
+                2 -> a = "El ID ya esta asignado a otro paciente"
+                3 -> a = "El ID no existe"
+                4 -> a = "El paciente fue registrado satisfactoriamente"
+            }
+            Toast.makeText(this, a, Toast.LENGTH_LONG).show()
+        })
         ArrayAdapter.createFromResource(this, R.array.PrevPato,android.R.layout.simple_spinner_item).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.spinner3.adapter = adapter }
@@ -86,6 +102,8 @@ class AddPacientActivity : AppCompatActivity() {
                     "alergias" to alergias,
                     "idenUso" to id,
                     "fecha" to date)
+
+                vM.addpaciente(paciente,cedula,id)
 
 
             }

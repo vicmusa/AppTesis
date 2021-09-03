@@ -4,23 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:layout_margin="10dp"
-    android:background="@drawable/recycler">
+    android:elevation="30dp"
+    android:background="@drawable/recycler"
+    android:orientation="vertical">
 
     <LinearLayout
+        android:background="@drawable/titlerecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:backgroundTint="@color/bluelite"
-        >
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tvName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.6"
-            android:gravity="left"
+            android:gravity="start"
             android:padding="8dp"
             android:textColor="@color/white"
             android:textSize="30sp"
@@ -34,10 +35,37 @@
             android:layout_weight="0.2"
             android:gravity="end"
             app:lottie_colorFilter="@color/white"
-            app:lottie_rawRes="@raw/arrow"></com.airbnb.lottie.LottieAnimationView>
+            app:lottie_rawRes="@raw/arrow" />
     </LinearLayout>
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
+    <TextView
+        android:layout_width="0dp"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        android:text="@string/ritmo_cardiaco"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:textAlignment="center"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        android:text="@string/oxigenaci_n"
+        android:textColor="@color/bluelite" />
+
+    <TextView
+        android:textAlignment="center"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        android:text="@string/temperatura"
+        android:textColor="@color/orange" />
+</LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,47 +74,122 @@
         <TextView
             android:id="@+id/tvHr"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="40sp"
-            tools:text="90"
+            android:layout_height="50dp"
             android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp">
-        </TextView>
+            android:textColor="@color/red"
+            android:textSize="32sp"
+            tools:text="90" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:lottie_rawRes="@raw/beat1"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"/>
+
         <TextView
             android:id="@+id/tvSpo2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="40sp"
-            tools:text="90"
+            android:layout_height="50dp"
             android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp">
-        </TextView>
+            android:textColor="@color/bluelite_dark"
+            android:textSize="32sp"
+            tools:text="90" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:lottie_rawRes="@raw/waterdrop"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true" />
+
         <TextView
             android:id="@+id/tvTemp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="40sp"
-            tools:text="90"
+            android:layout_height="50dp"
             android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp">
-        </TextView>
+            android:textColor="@color/orange"
+            android:textSize="32sp"
+            tools:text="90" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:lottie_rawRes="@raw/temp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/infoTab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/red"
+        android:orientation="vertical"
         android:visibility="gone"
         tools:visibility="visible">
 
         <TextView
+            android:id="@+id/tvCI"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AQUI VA TODO LO REFERENTE AL PACIENTE QUE NO ES NECESARIA MOSTRAR SIEMPRE"
-            android:textSize="40sp">
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp" />
 
-        </TextView>
+        <TextView
+            android:id="@+id/tvID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/tvFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp">
+
+            <TextView
+                android:id="@+id/tvEdad"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3" />
+
+            <TextView
+                android:id="@+id/tvPeso"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3" />
+
+            <TextView
+                android:id="@+id/tvEstatura"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvPrevPato"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tvALERGIAS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp" />
+
     </LinearLayout>
 </LinearLayout>
 
