@@ -49,7 +49,6 @@ class TimeLineActivity : AppCompatActivity() {
             val arrayAdapter: ArrayAdapter<PacienteModel> =
                 ArrayAdapter(this, android.R.layout.simple_spinner_item, it)
             binding.spinner.adapter = arrayAdapter
-            binding.datos.text = it.toString()
             list = it
         })
         timeLineViewModel.isLoading.observe(this, Observer {
@@ -61,6 +60,10 @@ class TimeLineActivity : AppCompatActivity() {
         })
         timeLineViewModel.dataGraph.observe(this, Observer {
             timeLineViewModel.listTimeStamp.observe(this, Observer {
+                if(it.isEmpty())
+                {
+
+                }
                 valorX.labelCount = 0
                 valorX.position = XAxis.XAxisPosition.BOTTOM
                 valorX.valueFormatter = object : ValueFormatter() {
@@ -71,6 +74,8 @@ class TimeLineActivity : AppCompatActivity() {
                     }
                 }
             })
+            binding.tvNombreP.visibility = View.VISIBLE
+            binding.tvNombreP.text=binding.spinner.selectedItem.toString()
             binding.grafico.data = it
             binding.grafico.invalidate()
         })

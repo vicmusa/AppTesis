@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity"
+    android:background="@color/darkwhite"
     android:orientation="vertical"
-    android:background="@color/darkwhite">
+    tools:context=".view.MainActivity">
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loading"
         android:layout_width="80dp"
@@ -16,10 +17,10 @@
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:lottie_rawRes="@raw/progress"
-        tools:visibility="visible"
         app:lottie_autoPlay="true"
-        app:lottie_loop="true"/>
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/progress"
+        tools:visibility="visible" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabmenu"
@@ -27,22 +28,33 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/bluelite"
+        android:outlineSpotShadowColor="@color/bluelite_dark"
+        app:rippleColor="@color/bluelite_dark"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_home_24" />
+        app:layout_constraintHorizontal_bias="0.5"
+        android:src="@drawable/outline_menu" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabadd"
+
+        android:backgroundTint="@color/alice_blue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="false"
         android:visibility="gone"
+        app:fabSize="mini"
+        android:outlineSpotShadowColor="@color/alice_blue"
         app:layout_constraintBottom_toTopOf="@+id/fabmenu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_info_24" />
+        app:layout_constraintHorizontal_bias="0.5"
+
+        app:srcCompat="@drawable/ic_baseline_info_24"
+        tools:visibility="visible"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabadd2"
@@ -52,9 +64,12 @@
         android:layout_marginBottom="16dp"
         android:clickable="false"
         android:visibility="gone"
+        app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/fabadd"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_home_24" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:srcCompat="@drawable/ic_baseline_home_24"
+        tools:visibility="visible" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabinfo"
@@ -64,9 +79,14 @@
         android:layout_marginBottom="16dp"
         android:clickable="false"
         android:visibility="gone"
+        android:backgroundTint="@color/alice_blue"
+        app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/fabtimeline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_home_24" />
+        app:layout_constraintHorizontal_bias="0.5"
+
+        app:srcCompat="@drawable/ic_baseline_home_24"
+        tools:visibility="visible" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabtimeline"
@@ -76,9 +96,12 @@
         android:layout_marginBottom="16dp"
         android:clickable="false"
         android:visibility="gone"
+        app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/fabadd2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_home_24" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:srcCompat="@drawable/ic_baseline_home_24"
+        tools:visibility="visible" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -88,9 +111,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPacientes"
-            android:elevation="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:elevation="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 

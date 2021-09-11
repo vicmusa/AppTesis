@@ -41,4 +41,9 @@
     <string name="ritmo_cardiaco">Ritmo Cardiaco</string>
     <string name="oxigenaci_n">Oxigenación</string>
     <string name="temperatura">Temperatura</string>
+    <string name="evoluci_n">EVOLUCIÓN</string>
+    <string name="ver_datos">Ver datos</string>
+    <string name="nodata">NO HAY DATOS PARA ESTE USUARIO</string>
+    <string name="monitorear_paciente">Monitorear Paciente</string>
+    <string name="m_s_informacion">Más Informacion</string>
 </resources>

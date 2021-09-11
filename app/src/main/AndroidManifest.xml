@@ -16,9 +16,6 @@
         <activity android:name=".InfoActivity" />
         <activity android:name=".view.TimeLineActivity" />
         <activity
-            android:name=".AddPacienteActivity"
-            android:parentActivityName=".view.MainActivity" />
-        <activity
             android:name=".SplashScreenActivity"
             android:theme="@style/SplashScreen">
             <intent-filter>
