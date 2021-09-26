@@ -1,5 +1,6 @@
 package com.example.apptesis.view
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apptesis.PacientesAdapter
+import com.example.apptesis.R
 import com.example.apptesis.core.Pref
 import com.example.apptesis.databinding.ActivityMainBinding
 import com.example.apptesis.databinding.ItemDialogBinding
@@ -44,7 +46,9 @@ class MainActivity : AppCompatActivity() {
         val adapter = PacientesAdapter(list)
         binding.rvPacientes.adapter = adapter
         createDialog()
-
+        mainViewModel.dealta.observe(this,{
+            Toast.makeText(this,"¡El paciente fue dado de alta satisfactoriamente!",Toast.LENGTH_LONG).show()
+        })
         mainViewModel.isLoading.observe(this, Observer {
             if(it)
             {
@@ -115,7 +119,7 @@ class MainActivity : AppCompatActivity() {
             mainViewModel.addData(ci,id)
             alertDialog.dismiss()}
         bindingDialog.dialogCancel.setOnClickListener{
-            alertDialog.dismiss() }
+            alertDialog.cancel() }
 
        val itemTouchHelperCallback = object : ItemTouchHelper.Callback(){
            override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
@@ -131,14 +135,30 @@ class MainActivity : AppCompatActivity() {
            }
 
            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+               val deleteCI = toSaveList[viewHolder.absoluteAdapterPosition].ci
                toSaveList.removeAt(viewHolder.adapterPosition)
                pref.save(toSaveList)
                adapter.deleteItem(viewHolder.adapterPosition)
-               val snackbar = Snackbar.make(binding.root,"Paciente eliminado de la lista",Snackbar.LENGTH_LONG).show()
+               showdialogAlta(deleteCI)
            }
        }
     val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(binding.rvPacientes)
+    }
+
+    private fun showdialogAlta(item : String) {
+        var builder = AlertDialog.Builder(this)
+        builder.setTitle("¿Desea dar de alta al paciente?")
+        builder.setMessage("El paciente se eliminó de la lista pero aún no se le ha dado de alta")
+        builder.setPositiveButton("Si",DialogInterface.OnClickListener{dialog, id ->
+            mainViewModel.alta(item)
+            dialog.cancel()
+        })
+        builder.setNegativeButton("No",DialogInterface.OnClickListener{dialog, which ->
+            dialog.cancel()
+        })
+        var alert = builder.create()
+        alert.show()
     }
 
     private fun createDialog() {
