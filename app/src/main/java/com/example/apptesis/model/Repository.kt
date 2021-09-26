@@ -21,7 +21,7 @@ class Repository {
 
         val distancia = InnerInfoModel("Distanciamiento social", R.raw.distancia,"Mantenga una distancia segura de los demás, incluso si no parecen estar enfermos. Se recomienda mantener 2 metros de distancia")
         val mascarilla = InnerInfoModel("Usar mascarilla", R.raw.mascarilla,"Use una mascarilla en público, especialmente en interiores o cuando no sea posible el distanciamiento físico.")
-        val espacios = InnerInfoModel("Evite espacios cerrados o con mucha gente", R.raw.gente,"Elija espacios abiertos y bien ventilados en lugar de cerrados y evite lugares con alto volúmen de personas.")
+        val espacios = InnerInfoModel("Evite espacios cerrados", R.raw.gente,"Elija espacios abiertos y bien ventilados en lugar de cerrados y evite lugares con alto volúmen de personas.")
         val manos = InnerInfoModel("Lave sus manos con frecuencia", R.raw.manos,"Lávese las manos con frecuencia. Use agua y jabón o un desinfectante para manos a base de alcohol.")
         val cara = InnerInfoModel("Evite tocar su rostro", R.raw.cara,"Evite tocar su rostro con las manos")
         val casa = InnerInfoModel("Permanezca en casa", R.raw.casa,"Quédese en casa si no se siente bien o presenta algún síntoma")

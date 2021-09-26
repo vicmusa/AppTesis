@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ver_datos"
-            app:cornerRadius="20px"
+            android:background="@drawable/btnstyle"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 <LinearLayout
     android:background="@drawable/shapegraph"

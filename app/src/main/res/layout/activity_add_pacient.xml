@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.AddPacientActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/darkwhite">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -203,13 +204,17 @@
         android:layout_height="wrap_content">
 
         <Button
+          android:background="@drawable/btnstyle"
             android:id="@+id/btnCanPato"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Cancelar"
             android:layout_marginHorizontal="25dp"
             android:layout_weight="0.5"/>
         <Button
+            android:textColor="@color/white"
+            android:background="@drawable/btnstyle"
             android:id="@+id/btnAddPato"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -244,13 +249,18 @@
         android:layout_height="wrap_content">
 
         <Button
+            android:textColor="@color/white"
+            android:background="@drawable/btnstyle"
             android:id="@+id/btnCanAler"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Cancelar"
+
             android:layout_marginHorizontal="25dp"
             android:layout_weight="0.5"/>
         <Button
+            android:textColor="@color/white"
+            android:background="@drawable/btnstyle"
             android:id="@+id/btnAddAler"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -260,11 +270,13 @@
     </LinearLayout>
 
     <Button
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
         android:text="@string/agregar_paciente"
-        android:id="@+id/btnAddPatient">
+        android:id="@+id/btnAddPatient"
+        android:background="@drawable/btnstyle">
 
     </Button>
         </LinearLayout>
