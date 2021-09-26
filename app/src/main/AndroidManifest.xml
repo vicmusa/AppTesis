@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTesis">
         <activity android:name=".view.AddPacientActivity"></activity>
-        <activity android:name=".InfoActivity" />
+        <activity android:name=".view.InfoActivity" />
         <activity android:name=".view.TimeLineActivity" />
         <activity
             android:name=".SplashScreenActivity"

@@ -11,7 +11,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.example.apptesis.InfoActivity
 import com.example.apptesis.PacientesAdapter
 import com.example.apptesis.core.Pref
 import com.example.apptesis.databinding.ActivityMainBinding
