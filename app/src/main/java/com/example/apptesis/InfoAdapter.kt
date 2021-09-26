@@ -29,6 +29,25 @@ class InfoAdapter(val infolist : List<InfoModel>,context: Context) :  RecyclerVi
 
         fun render(info : InfoModel){
 
+            binding.vpflecha.setOnClickListener{
+                if(binding.vpinfo.visibility==View.GONE)
+                {
+                    binding.vpinfo.visibility=View.VISIBLE
+                    binding.linearLayout2.setBackgroundResource(R.drawable.titlerecycler)
+                    binding.indicator.visibility=View.VISIBLE
+                    binding.vpflecha.setMinAndMaxProgress(0.0f,0.5f)
+                    binding.vpflecha.playAnimation()
+                }
+                else{
+                    binding.linearLayout2.setBackgroundResource(R.drawable.tittleinfodismiss)
+                    binding.vpinfo.visibility=View.GONE
+                    binding.indicator.visibility=View.GONE
+                    binding.vpflecha.setMinAndMaxProgress(0.5f,1.0f)
+                    binding.vpflecha.playAnimation()
+                }
+
+            }
+
             binding.tvtittle.text = info.titulo
             binding.vpinfo.adapter = VPInfoAdapter(info.list)
             binding.vpinfo.orientation= ViewPager2.ORIENTATION_HORIZONTAL
