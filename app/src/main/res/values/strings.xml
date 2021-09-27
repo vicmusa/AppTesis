@@ -49,4 +49,5 @@
     <string name="advertencia">"¡Advertencia!"</string>
     <string name="exito">"¡Éxito!"</string>
     <string name="error">"¡Error!"</string>
+    <string name="borrar">Borrar</string>
 </resources>

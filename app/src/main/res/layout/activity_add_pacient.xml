@@ -209,7 +209,7 @@
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Cancelar"
+            android:text="@string/borrar"
             android:layout_marginHorizontal="25dp"
             android:layout_weight="0.5"/>
         <Button
@@ -254,7 +254,7 @@
             android:id="@+id/btnCanAler"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Cancelar"
+            android:text="@string/borrar"
 
             android:layout_marginHorizontal="25dp"
             android:layout_weight="0.5"/>
