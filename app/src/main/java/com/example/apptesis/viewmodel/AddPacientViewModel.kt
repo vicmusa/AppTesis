@@ -12,6 +12,8 @@ import kotlinx.coroutines.launch
 
 class AddPacientViewModel : ViewModel() {
 
+    val isloadig = MutableLiveData<Boolean>()
+
     val retrieveByCIUserCase = RetrieveByCIUserCase()
     val retrieveByIDUserCase = RetrieveByIDUserCase()
     val validateExistUserCase = ValidateExistIDUserCase()
@@ -21,6 +23,7 @@ class AddPacientViewModel : ViewModel() {
     {
     viewModelScope.launch{
 
+        isloadig.postValue(true)
         val result = retrieveByCIUserCase(ci)
         Log.e("THis",result.ci + result.nombre)
         if(result.nombre.equals("0"))
@@ -48,7 +51,7 @@ class AddPacientViewModel : ViewModel() {
         {
             tipeExiste.postValue(1)
         }
-
+        isloadig.postValue(false)
     }
     }
 }

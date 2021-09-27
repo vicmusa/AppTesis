@@ -269,6 +269,23 @@
             android:layout_weight="0.5"/>
     </LinearLayout>
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/isloading1"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:visibility="gone"
+                android:elevation="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/progress"
+                tools:visibility="visible" />
+
     <Button
         android:textColor="@color/white"
         android:layout_width="match_parent"
@@ -279,6 +296,8 @@
         android:background="@drawable/btnstyle">
 
     </Button>
+
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

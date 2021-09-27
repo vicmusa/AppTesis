@@ -20,16 +20,13 @@ class GetDataUserCase {
             for(ds in result.children) {
                 val ts = ds.key.toString().toLong()
                 if(ts >= fecha.toLong()/1000) {
-                    Log.e("LISTA", "AQUI" + ts.toString())
                     val spo2 = ds.child("spo2").value.toString().toFloat()
                     val hr: Float = ds.child("hr").value.toString().toFloat()
                     val temp = ds.child("temp").value.toString().toFloat()
                     list.add(HistoricalDataModel(ts, spo2, hr, temp))
-                    Log.e("LISTA", list.toString())
                 }
             }
         }
-        Log.e("LISTA", list.toString() +" VICTO EPA")
         return list
     }
 
