@@ -82,12 +82,15 @@ class PacientesAdapter(val listPacientes:MutableList<PacienteModel>) :  Recycler
                 {
                     if(snapshot.exists()) {
 
-                        val spo2 = snapshot.child("spo2").getValue().toString()
-                        val hr = snapshot.child("hr").getValue().toString()
-                        val temp = snapshot.child("temp").getValue().toString()
-                        tvTemp.text = temp
-                        tvHr.text = hr
-                        tvSpo2.text = spo2
+                        val spo2 = snapshot.child("spo2").getValue().toString().toDouble()
+                        val hr = snapshot.child("hr").getValue().toString().toDouble()
+                        val temp = snapshot.child("temp").getValue().toString().toDouble()
+                        val spo2String = String.format("%.1f",spo2)
+                        val hrString = String.format("%.1f",hr)
+                        val tempString = String.format("%.1f",temp)
+                        tvTemp.text = tempString
+                        tvHr.text = hrString
+                        tvSpo2.text = spo2String
 
                     }
                 }
