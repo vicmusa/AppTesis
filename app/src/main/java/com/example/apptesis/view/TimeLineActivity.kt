@@ -68,8 +68,8 @@ class TimeLineActivity : AppCompatActivity() {
                     binding.nodatatv.visibility = View.VISIBLE
                 }
                 else{
-                var label = list.size/10
-                if(label< 2 )
+                var label = 5
+                if(label< 5 )
                 {
                     label = 2
                 }
