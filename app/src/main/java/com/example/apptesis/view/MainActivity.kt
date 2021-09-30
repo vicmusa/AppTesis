@@ -1,5 +1,6 @@
 package com.example.apptesis.view
 
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Typeface
@@ -186,5 +187,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+
 
 }

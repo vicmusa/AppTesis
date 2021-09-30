@@ -62,6 +62,8 @@ class AddPacientActivity : AppCompatActivity() {
         ArrayAdapter.createFromResource(this, R.array.Gruposang,android.R.layout.simple_spinner_item).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.spinner2.adapter = adapter }
+        ArrayAdapter.createFromResource(this,R.array.alergias,android.R.layout.simple_spinner_item).also { adapter ->
+            binding.spinner4.adapter = adapter }
 
         binding.btnAddPato.setOnClickListener {
             if(binding.tvPrevpato.text.toString().equals("Ninguna"))
@@ -80,14 +82,20 @@ class AddPacientActivity : AppCompatActivity() {
             }
         }
         binding.btnAddAler.setOnClickListener {
-            if(binding.tvAlergias.equals("Ninguna"))
+            if(binding.tvAlergias.text.toString().equals("Ninguna"))
             {
                 binding.tvAlergias.text = binding.spinner4.selectedItem.toString()
             }
             else
             {
-                    binding.tvAlergias.text =
-                        binding.tvAlergias.text.toString() + "/" + binding.spinner4.selectedItem.toString()
+
+                if(binding.tvAlergias.text.toString().contains(binding.spinner4.selectedItem.toString()))
+                {
+                    MotionToast.createColorToast(this,getString(R.string.advertencia),"Ya la alergia seleccionada está incluida en la lista",MotionToast.TOAST_WARNING,MotionToast.GRAVITY_BOTTOM,MotionToast.LONG_DURATION,font)
+                }
+                else{
+                    binding.tvAlergias.text = binding.tvAlergias.text.toString() + "/" + binding.spinner4.selectedItem.toString()
+                }
             }
         }
         binding.btnCanPato.setOnClickListener {

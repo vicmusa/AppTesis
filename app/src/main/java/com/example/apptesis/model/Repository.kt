@@ -9,17 +9,19 @@ class Repository {
 
         // SINTOMAS
 
-        val fiebre = InnerInfoModel("Fiebre", R.raw.fiebre,"FIEBRE...")
-        val tos = InnerInfoModel("Tos Seca", R.raw.tos,"TOS SECA")
-        val respirar = InnerInfoModel("Dificultad para respirar", R.raw.respirar,"DIFICULTAD PARA RESPIRAR")
-        val cabeza = InnerInfoModel("Dolor de cabeza", R.raw.cabeza,"DOLOR DE CABEZA")
-        val fatiga = InnerInfoModel("Fatiga", R.raw.fatiga,"FATIGA")
-        val neumonia = InnerInfoModel("Neumonía",R.raw.neumo,"NEUMO")
-        val garganta = InnerInfoModel("Dolor de garganta", R.raw.garganta,"DOLOR DE GARGANTA")
-        val perdida = InnerInfoModel("Perdida del gusto y el olfalto", R.raw.olfato,"PERDIDA DEL GUSTO Y EL OLFATO")
-        //val conjuntivitis = InnerInfoModel("Conjuntivitis", R.drawable.conjuntivitis,"CONJUNTIVITIS")
-        val diarrea = InnerInfoModel("Diarrea", R.raw.diarrea,"LA DIERRA ES UNA CAGALADERA DURISIMA")
-        val listsintom = listOf(fiebre, tos, respirar, perdida, neumonia, garganta, cabeza, fatiga, diarrea)
+        val fiebre = InnerInfoModel("Fiebre", R.raw.fiebre,"Se considera fiebre si la temperatura de la axila de 99 °F (37,2 °C) o mayor. Casi un 90% de los contagiados de COVID-19 padece de fiebre")
+        val tos = InnerInfoModel("Tos Seca", R.raw.tos,"Tos irritante e insistente, no presenta flema o mucosidad y puede ser intensa a tal punto de producir ataques de tos. Alrededor del 67% de la población contagiada reporta haber presentado este síntoma.")
+        val respirar = InnerInfoModel("Disnea", R.raw.respirar,"Dificultad para respirar o falta de aire. El 18,6 % de los contagiados reporta haber tenido dificultad para respirar.")
+        val cabeza = InnerInfoModel("Cefalea", R.raw.cabeza,"Dolor de cabeza. Se reporta alrededor de 13,6% de contagiados con este síntoma.")
+        val fatiga = InnerInfoModel("Fatiga", R.raw.fatiga,"Sensacion de falta de energía, de agotamiento o de cansancio. El 38% de los pacientes de COVID-19 registra haber experimentado fatiga.")
+        val neumonia = InnerInfoModel("Neumonía",R.raw.neumo,"Infección que inflama los sacos aéreos de uno o ambos pulmones, estos se pueden llenar de líquido o pus provocando tos con flema, fiebre, escalofríos y dificultad para respirar.")
+        val garganta = InnerInfoModel("Faringitis", R.raw.garganta,"Dolor de garganta, carraspera o irritación de la garganta que a menudo empeora al tragar. Aproximadamente el 14% de los pacientes de COVID-19 reporta haber presentado este síntoma.")
+        val perdida = InnerInfoModel("Perdida del gusto y el olfalto", R.raw.olfato,"El 88% de los pacientes con COVID-19 presentan pérdida del olfato y del gusto, la mayoría de estos pacientes recupera los sentidos de forma espontánea con el paso del tiempo.")
+        val diarrea = InnerInfoModel("Diarrea", R.raw.diarrea,"Heces acuosas y blandas. Se considera diarrea si se evacúa heces sueltas tres o más veces en un día. Alrededor de 3,7% de los pacientes de COVID-19 presenta este síntoma")
+        val nauseas = InnerInfoModel("Nauseas", R.raw.nauseas,"Sensación de enfermedad o malestar en el estómago que puede aparecer con una necesidad imperiosa de vomitar. Se calcula que un 5% de los diagnosticados presenta este síntoma")
+
+        val listsintom = listOf(fiebre, tos, respirar, perdida, neumonia, garganta, cabeza, fatiga, diarrea, nauseas)
+
 
         // RECOMENDACIONES
 

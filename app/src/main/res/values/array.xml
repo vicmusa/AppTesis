@@ -23,4 +23,14 @@
         <item>Hepatitis</item>
         <item>Sindrome de Down</item>
     </string-array>
+    <string-array name="alergias">
+        <item>Anticonvulsivos</item>
+        <item>Insulina</item>
+        <item>Iodo</item>
+        <item>Penicilina</item>
+        <item>Anestesia</item>
+        <item>Asma Alergica</item>
+        <item>Dermatitis de contacto</item>
+        <item>Anafilaxia</item>
+    </string-array>
 </resources>
