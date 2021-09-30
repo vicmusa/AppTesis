@@ -9,6 +9,7 @@ import com.example.apptesis.usercase.*
 import kotlinx.coroutines.launch
 
 class MainViewModel: ViewModel() {
+    var dealta = MutableLiveData<Boolean>()
     var isLoading = MutableLiveData<Boolean>()
     var noExiste = MutableLiveData<Boolean>()
     var paciente = MutableLiveData<PacienteModel>()
@@ -82,5 +83,12 @@ class MainViewModel: ViewModel() {
         }
 
         return paciente
+    }
+    fun alta (ci: String){
+                viewModelScope.launch {
+            val deleteUserCase = DeleteUserCase()
+            deleteUserCase(ci)
+            dealta.postValue(true)
+        }
     }
 }

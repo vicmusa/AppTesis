@@ -16,7 +16,7 @@ data class PacienteModel(var nombre : String,
     constructor() : this ("0","0","0","0","0","0","0","0","0","0","0",)
 
     override fun toString(): String {
-        var a = ci+":"+nombre+" "+apellido
+        var a = nombre+" "+apellido
         return a
     }
 }

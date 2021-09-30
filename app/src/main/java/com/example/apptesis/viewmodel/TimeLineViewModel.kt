@@ -1,5 +1,6 @@
 package com.example.apptesis.viewmodel
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,7 +28,7 @@ class TimeLineViewModel : ViewModel() {
             listToAdapter.postValue(result)
         }
     }
-    fun graph(id : String,fecha : String){
+    fun graph(id : String,fecha : String, context: Context){
         Log.e("LISTA","ENTRE AQUI")
         viewModelScope.launch {
             Log.e("LISTA", "ESTOY EN LA CORRUTINA")
@@ -40,7 +41,7 @@ class TimeLineViewModel : ViewModel() {
                 ts.add(it.ts)
             }
             Log.e("LISTA", ts.toString())
-            val result2 = GraphUserCase(result)
+            val result2 = GraphUserCase(result,context)
             listTimeStamp.postValue(ts)
             dataGraph.postValue(result2)
             isLoading.postValue(false)

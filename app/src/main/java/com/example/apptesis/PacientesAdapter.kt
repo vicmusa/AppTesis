@@ -1,5 +1,13 @@
 package com.example.apptesis
 
+import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.graphics.Color
+import android.graphics.Typeface
+import android.os.Build
+import android.provider.Settings.Global.getString
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -7,17 +15,21 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.example.apptesis.core.FirebaseHelper
 import com.google.firebase.database.*
 import com.example.apptesis.model.PacienteModel
+import com.example.apptesis.view.MainActivity
+import www.sanju.motiontoast.MotionToast
 import java.sql.Date
 import java.text.DateFormat
 
 
-class PacientesAdapter(val listPacientes:MutableList<PacienteModel>) :  RecyclerView.Adapter<PacientesAdapter.PacienteHolder>() {
+class PacientesAdapter(val listPacientes:MutableList<PacienteModel>,context: Context) :  RecyclerView.Adapter<PacientesAdapter.PacienteHolder>() {
 
+    val c = context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PacienteHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return PacienteHolder(layoutInflater.inflate(R.layout.item_paciente, parent, false))
@@ -26,7 +38,7 @@ class PacientesAdapter(val listPacientes:MutableList<PacienteModel>) :  Recycler
     override fun getItemCount(): Int = listPacientes.size
 
     override fun onBindViewHolder(holder: PacienteHolder, position: Int) {
-        holder.render(listPacientes[position])
+        holder.render(listPacientes[position],c)
     }
 
     fun deleteItem(i : Int)
@@ -56,7 +68,9 @@ class PacientesAdapter(val listPacientes:MutableList<PacienteModel>) :  Recycler
             val tvPrevpato = view.findViewById(R.id.tvPrevPato) as TextView
             val tvAlergias = view.findViewById(R.id.tvALERGIAS) as TextView
             val tvID = view.findViewById(R.id.tvID) as TextView
-        fun render(paciente : PacienteModel)
+
+
+        fun render(paciente : PacienteModel,context: Context)
         {
                 tvName.text= paciente.nombre +" "+ paciente.apellido
                 tvCI.text = "Cédula: "+paciente.ci
@@ -72,13 +86,26 @@ class PacientesAdapter(val listPacientes:MutableList<PacienteModel>) :  Recycler
                 override fun onDataChange(snapshot: DataSnapshot)
                 {
                     if(snapshot.exists()) {
-                        val spo2 = snapshot.child("spo2").getValue().toString()
-                        val hr = snapshot.child("hr").getValue().toString()
-                        val temp = snapshot.child("temp").getValue().toString()
 
-                        tvTemp.text = temp
-                        tvHr.text = hr
-                        tvSpo2.text = spo2
+                        val spo2 = snapshot.child("spo2").getValue().toString().toDouble()
+                        val hr = snapshot.child("hr").getValue().toString().toDouble()
+                        val temp = snapshot.child("temp").getValue().toString().toDouble()
+                        val spo2String = String.format("%.1f",spo2)
+                        val hrString = String.format("%.1f",hr)
+                        val tempString = String.format("%.1f",temp)
+                        tvTemp.text = tempString
+                        tvHr.text = hrString
+                        tvSpo2.text = spo2String
+
+
+                        if(spo2.toLong() <= 92.0 || temp.toLong() >= 39.0 || temp.toLong() <= 34.5 )
+                        {
+                                MotionToast.createColorToast(context as Activity, "¡Alerta paciente ${paciente.nombre} ${paciente.apellido}!","El paciente tiene valores fuera del rango normal",
+                                MotionToast.TOAST_WARNING,
+                                MotionToast.GRAVITY_BOTTOM,
+                                MotionToast.LONG_DURATION,null)
+                        }
+
                     }
                 }
                 override fun onCancelled(error: DatabaseError) {
@@ -102,6 +129,18 @@ class PacientesAdapter(val listPacientes:MutableList<PacienteModel>) :  Recycler
 
              }
         }
-        }
+    }
 
     }
+
+private fun MotionToast.Companion.createColorToast(
+    context: ValueEventListener,
+    title: String?,
+    message: String,
+    style: String,
+    position: Int,
+    duration: Long,
+    font: Typeface?
+) {
+
+}

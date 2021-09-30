@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.AddPacientActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/darkwhite">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -203,13 +204,17 @@
         android:layout_height="wrap_content">
 
         <Button
+          android:background="@drawable/btnstyle"
             android:id="@+id/btnCanPato"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Cancelar"
+            android:text="@string/borrar"
             android:layout_marginHorizontal="25dp"
             android:layout_weight="0.5"/>
         <Button
+            android:textColor="@color/white"
+            android:background="@drawable/btnstyle"
             android:id="@+id/btnAddPato"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -244,13 +249,18 @@
         android:layout_height="wrap_content">
 
         <Button
+            android:textColor="@color/white"
+            android:background="@drawable/btnstyle"
             android:id="@+id/btnCanAler"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Cancelar"
+            android:text="@string/borrar"
+
             android:layout_marginHorizontal="25dp"
             android:layout_weight="0.5"/>
         <Button
+            android:textColor="@color/white"
+            android:background="@drawable/btnstyle"
             android:id="@+id/btnAddAler"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -259,14 +269,35 @@
             android:layout_weight="0.5"/>
     </LinearLayout>
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/isloading1"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:visibility="gone"
+                android:elevation="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/progress"
+                tools:visibility="visible" />
+
     <Button
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
         android:text="@string/agregar_paciente"
-        android:id="@+id/btnAddPatient">
+        android:id="@+id/btnAddPatient"
+        android:background="@drawable/btnstyle">
 
     </Button>
+
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

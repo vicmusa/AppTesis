@@ -12,12 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTesis">
-        <activity android:name=".view.AddPacientActivity"></activity>
-        <activity android:name=".InfoActivity" />
-        <activity android:name=".view.TimeLineActivity" />
-        <activity
-            android:name=".AddPacienteActivity"
-            android:parentActivityName=".view.MainActivity" />
+        <activity android:name=".view.AddPacientActivity"
+            android:parentActivityName=".view.MainActivity"/>
+        <activity android:name=".view.InfoActivity"
+            android:parentActivityName=".view.MainActivity"/>
+        <activity android:name=".view.TimeLineActivity"
+            android:parentActivityName=".view.MainActivity"/>
         <activity
             android:name=".SplashScreenActivity"
             android:theme="@style/SplashScreen">

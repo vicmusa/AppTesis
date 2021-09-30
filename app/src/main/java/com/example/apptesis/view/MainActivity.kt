@@ -1,30 +1,34 @@
 package com.example.apptesis.view
 
+import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.example.apptesis.InfoActivity
 import com.example.apptesis.PacientesAdapter
+import com.example.apptesis.R
 import com.example.apptesis.core.Pref
 import com.example.apptesis.databinding.ActivityMainBinding
 import com.example.apptesis.databinding.ItemDialogBinding
 import com.example.apptesis.model.PacienteModel
 import com.example.apptesis.viewmodel.MainViewModel
-import com.google.android.material.snackbar.Snackbar
+import www.sanju.motiontoast.MotionToast
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var txthr : TextView
-    private lateinit var txtspo2 : TextView
-    private lateinit var txttemp : TextView
+    private val duration = MotionToast.LONG_DURATION
+    private val gravity = MotionToast.GRAVITY_BOTTOM
+    private var font = null
     private lateinit var binding : ActivityMainBinding
     private var isClikeable = false
     private lateinit var bindingDialog : ItemDialogBinding
@@ -35,6 +39,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        title = "Covid-Monitor"
         binding = ActivityMainBinding.inflate(layoutInflater)
         bindingDialog = ItemDialogBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -42,10 +47,12 @@ class MainActivity : AppCompatActivity() {
         list = pref.getList()!!.toMutableList()
         toSaveList = list
 
-        val adapter = PacientesAdapter(list)
+        val adapter = PacientesAdapter(list,this)
         binding.rvPacientes.adapter = adapter
         createDialog()
-
+        mainViewModel.dealta.observe(this,{
+            MotionToast.createColorToast(this,getString(R.string.exito),"¡El paciente fue dado de alta satisfactoriamente!",MotionToast.TOAST_DELETE,gravity,duration,font)
+        })
         mainViewModel.isLoading.observe(this, Observer {
             if(it)
             {
@@ -58,8 +65,8 @@ class MainActivity : AppCompatActivity() {
             }
         })
         mainViewModel.idNoExiste.observe(this, Observer {
+            MotionToast.createColorToast(this,getString(R.string.error),"El ID del dispotivo no esta en la base de datos",MotionToast.TOAST_ERROR,gravity,duration,font)
             openDialog()
-            Toast.makeText(this,"El ID no esta en la base de datos",Toast.LENGTH_LONG).show()
         })
         mainViewModel.paciente.observe(this, Observer {
             toSaveList.add(it)
@@ -67,12 +74,13 @@ class MainActivity : AppCompatActivity() {
             adapter.addItem(it)
              })
         mainViewModel.asignado.observe(this, Observer {
+            MotionToast.createColorToast(this,getString(R.string.advertencia),"EL ID ya esta asignado al Paciente de CI ${it.ci}",MotionToast.TOAST_INFO,gravity,duration, font)
             openDialog()
-            Toast.makeText(this, "EL ID Selecionacionado ya esta asignado al Paciente de CI ${it.ci}",Toast.LENGTH_LONG).show()
         })
         mainViewModel.noExiste.observe(this, Observer {
             openDialog()
-            Toast.makeText(this, "LA CEDULA NO EXISTE O EL ID INGRESADO NO ESTA ASIGNADO A NINGUN PACIENTE", Toast.LENGTH_LONG).show()
+            MotionToast.createColorToast(this,getString(R.string.error),"La cedula/id no registrada",MotionToast.TOAST_ERROR,gravity,duration, font)
+
         })
         binding.fabmenu.setOnClickListener{
             if(!isClikeable)
@@ -116,7 +124,7 @@ class MainActivity : AppCompatActivity() {
             mainViewModel.addData(ci,id)
             alertDialog.dismiss()}
         bindingDialog.dialogCancel.setOnClickListener{
-            alertDialog.dismiss() }
+            alertDialog.cancel() }
 
        val itemTouchHelperCallback = object : ItemTouchHelper.Callback(){
            override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
@@ -132,14 +140,30 @@ class MainActivity : AppCompatActivity() {
            }
 
            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+               val deleteCI = toSaveList[viewHolder.absoluteAdapterPosition].ci
                toSaveList.removeAt(viewHolder.adapterPosition)
                pref.save(toSaveList)
                adapter.deleteItem(viewHolder.adapterPosition)
-               val snackbar = Snackbar.make(binding.root,"Paciente eliminado de la lista",Snackbar.LENGTH_LONG).show()
+               showdialogAlta(deleteCI)
            }
        }
     val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(binding.rvPacientes)
+    }
+
+    private fun showdialogAlta(item : String) {
+        var builder = AlertDialog.Builder(this)
+        builder.setTitle("¿Desea dar de alta al paciente?")
+        builder.setMessage("El paciente se eliminó de la lista pero aún no se le ha dado de alta")
+        builder.setPositiveButton("Si",DialogInterface.OnClickListener{dialog, id ->
+            mainViewModel.alta(item)
+            dialog.cancel()
+        })
+        builder.setNegativeButton("No",DialogInterface.OnClickListener{dialog, which ->
+            dialog.cancel()
+        })
+        var alert = builder.create()
+        alert.show()
     }
 
     private fun createDialog() {
@@ -163,6 +187,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
 
 
 }

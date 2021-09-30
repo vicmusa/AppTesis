@@ -1,97 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity"
+    android:background="@color/darkwhite"
     android:orientation="vertical"
-    android:background="@color/darkwhite">
+    tools:context=".view.MainActivity">
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loading"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginBottom="30dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:lottie_rawRes="@raw/progress"
-        tools:visibility="visible"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"/>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabmenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_gravity="bottom|center"
         android:layout_marginBottom="16dp"
-        android:clickable="true"
+        android:visibility="gone"
+        android:elevation="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_home_24" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabadd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="false"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/fabmenu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_info_24" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabadd2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="false"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/fabadd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_home_24" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabinfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="false"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/fabtimeline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_home_24" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabtimeline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="false"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/fabadd2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_home_24" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/progress"
+        tools:visibility="visible" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:id="@+id/lvbotones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvPacientes"
-            android:elevation="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabinfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/alice_blue"
+            android:clickable="false"
+            android:visibility="gone"
+            app:fabSize="mini"
+            app:tint="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/fabtimeline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+
+            app:srcCompat="@drawable/info"
+            tools:visibility="visible" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabtimeline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:clickable="false"
+            android:visibility="gone"
+            android:backgroundTint="@color/alice_blue"
+            app:fabSize="mini"
+            app:tint="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/fabadd2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:srcCompat="@drawable/graph"
+            tools:visibility="visible" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabadd2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:tint="@color/white"
+            android:layout_marginBottom="16dp"
+            android:clickable="false"
+            android:visibility="gone"
+            app:fabSize="mini"
+            android:backgroundTint="@color/alice_blue"
+            app:layout_constraintBottom_toTopOf="@+id/fabadd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:srcCompat="@drawable/addplus"
+            tools:visibility="visible" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabadd"
+            android:layout_width="wrap_content"
+            app:tint="@color/white"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/alice_blue"
+            android:clickable="false"
+            android:visibility="gone"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@+id/fabmenu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+
+            app:srcCompat="@drawable/add"
+            tools:visibility="visible" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabmenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            app:tint="@color/white"
+            android:backgroundTint="@color/bluelite"
+            android:clickable="true"
+            android:src="@drawable/outline_menu" />
+
+
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPacientes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="-1dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
