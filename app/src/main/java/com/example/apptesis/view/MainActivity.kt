@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         list = pref.getList()!!.toMutableList()
         toSaveList = list
 
-        val adapter = PacientesAdapter(list)
+        val adapter = PacientesAdapter(list,this)
         binding.rvPacientes.adapter = adapter
         createDialog()
         mainViewModel.dealta.observe(this,{

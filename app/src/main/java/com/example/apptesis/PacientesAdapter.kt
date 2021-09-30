@@ -1,10 +1,13 @@
 package com.example.apptesis
 
+import android.app.Activity
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Build
+import android.provider.Settings.Global.getString
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -19,12 +22,14 @@ import com.example.apptesis.core.FirebaseHelper
 import com.google.firebase.database.*
 import com.example.apptesis.model.PacienteModel
 import com.example.apptesis.view.MainActivity
+import www.sanju.motiontoast.MotionToast
 import java.sql.Date
 import java.text.DateFormat
 
 
-class PacientesAdapter(val listPacientes:MutableList<PacienteModel>) :  RecyclerView.Adapter<PacientesAdapter.PacienteHolder>() {
+class PacientesAdapter(val listPacientes:MutableList<PacienteModel>,context: Context) :  RecyclerView.Adapter<PacientesAdapter.PacienteHolder>() {
 
+    val c = context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PacienteHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return PacienteHolder(layoutInflater.inflate(R.layout.item_paciente, parent, false))
@@ -33,7 +38,7 @@ class PacientesAdapter(val listPacientes:MutableList<PacienteModel>) :  Recycler
     override fun getItemCount(): Int = listPacientes.size
 
     override fun onBindViewHolder(holder: PacienteHolder, position: Int) {
-        holder.render(listPacientes[position])
+        holder.render(listPacientes[position],c)
     }
 
     fun deleteItem(i : Int)
@@ -65,7 +70,7 @@ class PacientesAdapter(val listPacientes:MutableList<PacienteModel>) :  Recycler
             val tvID = view.findViewById(R.id.tvID) as TextView
 
 
-        fun render(paciente : PacienteModel)
+        fun render(paciente : PacienteModel,context: Context)
         {
                 tvName.text= paciente.nombre +" "+ paciente.apellido
                 tvCI.text = "Cédula: "+paciente.ci
@@ -91,6 +96,15 @@ class PacientesAdapter(val listPacientes:MutableList<PacienteModel>) :  Recycler
                         tvTemp.text = tempString
                         tvHr.text = hrString
                         tvSpo2.text = spo2String
+
+
+                        if(spo2.toLong() <= 92.0 || temp.toLong() >= 39.0 || temp.toLong() <= 34.5 )
+                        {
+                                MotionToast.createColorToast(context as Activity, "¡Alerta paciente ${paciente.nombre} ${paciente.apellido}!","El paciente tiene valores fuera del rango normal",
+                                MotionToast.TOAST_WARNING,
+                                MotionToast.GRAVITY_BOTTOM,
+                                MotionToast.LONG_DURATION,null)
+                        }
 
                     }
                 }
@@ -118,3 +132,15 @@ class PacientesAdapter(val listPacientes:MutableList<PacienteModel>) :  Recycler
     }
 
     }
+
+private fun MotionToast.Companion.createColorToast(
+    context: ValueEventListener,
+    title: String?,
+    message: String,
+    style: String,
+    position: Int,
+    duration: Long,
+    font: Typeface?
+) {
+
+}
