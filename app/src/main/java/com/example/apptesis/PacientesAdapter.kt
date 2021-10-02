@@ -46,9 +46,9 @@ class PacientesAdapter(val listPacientes:MutableList<PacienteModel>,context: Con
         Log.e("This", "acatoy")
         notifyItemRemoved(i)
     }
-    fun addItem(paciente: PacienteModel)
+    fun addItem(paciente: PacienteModel,position: Int)
     {
-        notifyItemInserted(listPacientes.size)
+        notifyItemInserted(position)
     }
 
 

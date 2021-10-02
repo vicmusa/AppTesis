@@ -13,7 +13,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 
 class GraphUserCase {
 
-    suspend operator fun invoke(list: List<HistoricalDataModel>,context: Context): LineData {
+    suspend operator fun invoke(list: List<HistoricalDataModel>,context: Context): List<LineData> {
         val spo2Data: ArrayList<Entry> = arrayListOf()
         val hrData: ArrayList<Entry> = arrayListOf()
         val tempData: ArrayList<Entry> = arrayListOf()
@@ -35,11 +35,16 @@ class GraphUserCase {
 
 
 
-        val dataSet: ArrayList<ILineDataSet> = arrayListOf()
-        dataSet.add(lineSpo2)
-        dataSet.add(lineHr)
-        dataSet.add(lineTemp)
-        return LineData(dataSet)
+        val dataSetSpo2: ArrayList<ILineDataSet> = arrayListOf()
+        val dataSetHr:   ArrayList<ILineDataSet> = arrayListOf()
+        val dataSetTemp: ArrayList<ILineDataSet> = arrayListOf()
+        dataSetSpo2.add(lineSpo2)
+        dataSetHr.add(lineHr)
+        dataSetTemp.add(lineTemp)
+
+        val list = listOf(LineData(dataSetHr),LineData(dataSetSpo2), LineData(dataSetTemp))
+
+        return list
 
     }
     }

@@ -17,7 +17,8 @@ class TimeLineViewModel : ViewModel() {
     var listToAdapter = MutableLiveData<List<PacienteModel>>()
     var listTimeStamp = MutableLiveData<List<Long>>()
     var isLoading = MutableLiveData<Boolean>()
-    var dataGraph = MutableLiveData<LineData>()
+    var dataGraph = MutableLiveData<List<LineData>>()
+    var nodata = MutableLiveData<Boolean>()
     val RetrieveDataUserCase = RetrieveDataUserCase()
     val GetDataUserCase = GetDataUserCase()
     val GraphUserCase = GraphUserCase()
@@ -34,17 +35,22 @@ class TimeLineViewModel : ViewModel() {
             Log.e("LISTA", "ESTOY EN LA CORRUTINA")
             isLoading.postValue(true)
             val result = GetDataUserCase(id,fecha)
-            Log.e("LISTA", result.toString())
-            val ts = mutableListOf<Long>()
-            for(it in result)
+            if(result.isEmpty())
             {
-                ts.add(it.ts)
+                nodata.postValue(false)
             }
-            Log.e("LISTA", ts.toString())
-            val result2 = GraphUserCase(result,context)
-            listTimeStamp.postValue(ts)
-            dataGraph.postValue(result2)
-            isLoading.postValue(false)
+            else {
+                Log.e("LISTA", result.toString())
+                val ts = mutableListOf<Long>()
+                for (it in result) {
+                    ts.add(it.ts)
+                }
+                Log.e("LISTA", ts.toString())
+                val result2 = GraphUserCase(result, context)
+                listTimeStamp.postValue(ts)
+                dataGraph.postValue(result2)
+                isLoading.postValue(false)
+            }
 
 
         }

@@ -137,7 +137,7 @@ class AddPacientActivity : AppCompatActivity() {
                     "idenUso" to idcaps,
                     "fecha" to date)
 
-                vM.addpaciente(paciente,cedula,id)
+                vM.addpaciente(paciente,cedula,idcaps)
                 }
 
 

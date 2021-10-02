@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:orientation="vertical"
+             android:layout_marginHorizontal="35dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/alta"
+        android:padding="20dp"
+        android:background="@color/bluelite"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:fontFamily="@font/helveticabold"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:padding="20dp"
+        android:textSize="15sp"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/elim" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="12dp">
+
+        <TextView
+            android:id="@+id/cancelAlta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/bluelite"
+            android:text="@string/Cancelar" />
+        <TextView
+            android:id="@+id/yesAlta"
+            android:layout_width="0dp"
+            android:textSize="18sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:textColor="@color/bluelite"
+            android:text="@string/yes"
+            android:textAlignment="textEnd"/>
+
+        <TextView
+            android:id="@+id/noAlta"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no"
+            android:textAlignment="textEnd"
+            android:textColor="@color/bluelite"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="0.25"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -31,13 +31,25 @@ class TimeLineActivity : AppCompatActivity() {
         binding = ActivityTimeLineBinding.inflate(layoutInflater)
         setContentView(binding.root)
         prepareActionBar()
-        binding.grafico.setDrawBorders(true)
-        val descri = Description()
-        descri.text="Evolución"
+        binding.graficoO2.setDrawBorders(true)
+        binding.graficoHr.setDrawBorders(true)
+        binding.graficotemp.setDrawBorders(true)
+        val descri  = Description()
+        val descri2 = Description()
+        val descri3 = Description()
+        descri2.text="Temperatura"
+        descri2.textColor = R.color.bluelite
+        descri3.text="SpO2"
+        descri3.textColor = R.color.bluelite
+        descri.text="Ritmo Cárdiaco"
         descri.textColor = R.color.bluelite
-        binding.grafico.description = descri
-        var valorX = binding.grafico.xAxis
-        var pref = Pref(this)
+        binding.graficoHr.description = descri
+        binding.graficotemp.description = descri2
+        binding.graficoO2.description = descri3
+        val valorX = binding.graficoHr.xAxis
+        val valorX1 = binding.graficoO2.xAxis
+        val valorX2 = binding.graficotemp.xAxis
+        val pref = Pref(this)
         timeLineViewModel.createSpinner(pref)
         timeLineViewModel.listToAdapter.observe(this, Observer {
             binding.progressBar2.visibility= View.GONE
@@ -52,22 +64,19 @@ class TimeLineActivity : AppCompatActivity() {
             binding.spinner.adapter = arrayAdapter
             list = it
         })
+        timeLineViewModel.nodata.observe(this,{
+            MotionToast.createColorToast(this,getString(R.string.error),"No hay datos para el paciente",MotionToast.TOAST_INFO,MotionToast.GRAVITY_BOTTOM,MotionToast.LONG_DURATION,null)
+        })
         timeLineViewModel.isLoading.observe(this, Observer {
             if (it) {
-                binding.grafico.visibility = View.GONE
+                binding.llgraph.visibility= View.GONE
 
             } else {
-                binding.grafico.visibility = View.VISIBLE
+                binding.llgraph.visibility = View.VISIBLE
             }
         })
         timeLineViewModel.dataGraph.observe(this, Observer {
             timeLineViewModel.listTimeStamp.observe(this, Observer { list ->
-                if(list.isEmpty())
-                {
-                    MotionToast.createColorToast(this,getString(R.string.error),"No hay datos para el paciente",MotionToast.TOAST_INFO,MotionToast.GRAVITY_BOTTOM,MotionToast.LONG_DURATION,null)
-                    binding.nodatatv.visibility = View.VISIBLE
-                }
-                else{
                 var label = 5
                 if(label< 5 )
                 {
@@ -82,17 +91,41 @@ class TimeLineActivity : AppCompatActivity() {
                         return date.toString()
                     }
                 }
-            }
+                valorX1.labelCount = label
+                valorX1.position = XAxis.XAxisPosition.BOTTOM
+                valorX1.valueFormatter = object : ValueFormatter() {
+                    override fun getFormattedValue(value: Float): String {
+                        val fdate = getDateTimeInstance()
+                        var date = fdate.format(Date((list[value.toInt()] * 1000)))
+                        return date.toString()
+                    }
+                }
+                valorX2.labelCount = label
+                valorX2.position = XAxis.XAxisPosition.BOTTOM
+                valorX2.valueFormatter = object : ValueFormatter() {
+                    override fun getFormattedValue(value: Float): String {
+                        val fdate = getDateTimeInstance()
+                        var date = fdate.format(Date((list[value.toInt()] * 1000)))
+                        return date.toString()
+                    }
+                }
+
             })
             binding.tvNombreP.visibility = View.VISIBLE
             binding.tvNombreP.text=binding.spinner.selectedItem.toString()
-            binding.grafico.data = it
-            binding.grafico.invalidate()
+            binding.graficoO2.data = it[1]
+            binding.graficoO2.invalidate()
+            binding.graficotemp.data = it[2]
+            binding.graficotemp.invalidate()
+            binding.graficoHr.data = it[0]
+            binding.graficoHr.invalidate()
         })
         binding.button3.setOnClickListener {
-            binding.nodatatv.visibility=View.GONE
             timeLineViewModel.graph(list[binding.spinner.selectedItemPosition].id,list[binding.spinner.selectedItemPosition].fecha,this)
-            binding.grafico.fitScreen()
+            binding.llgraph.visibility = View.GONE
+            binding.graficotemp.fitScreen()
+            binding.graficoO2.fitScreen()
+            binding.graficoHr.fitScreen()
         }
         title = "Evolucíon"
     }

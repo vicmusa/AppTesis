@@ -43,6 +43,7 @@
             android:background="@drawable/btnstyle"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 <LinearLayout
+    android:id="@+id/llgraph"
     android:background="@drawable/shapegraph"
     android:orientation="vertical"
     android:layout_margin="18dp"
@@ -56,29 +57,62 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             tools:text="PEDRO PEREZ"
-        android:visibility="gone"
-        android:layout_gravity="center"
+            android:layout_gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/datos" />
 
+    <TextView
+        android:id="@+id/tvGrapHr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="12dp"
+        android:fontFamily="@font/helvetica_regular"
+        android:text="@string/ritmo_cardiaco"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
         <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/grafico"
-            android:visibility="gone"
-            tools:visibility="visible"
+            android:id="@+id/graficoHr"
             android:layout_width="match_parent"
-            android:layout_height="450sp">
+            android:layout_height="200sp">
         </com.github.mikephil.charting.charts.LineChart>
 
     <TextView
-        android:visibility="gone"
-        android:id="@+id/nodatatv"
+        android:id="@+id/tvGrapSpo2"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
         android:layout_gravity="center"
-        android:layout_margin="12dp"
-        android:textSize="18sp"
+        android:layout_marginVertical="12dp"
+        android:fontFamily="@font/helvetica_regular"
+        android:text="@string/oxigenaci_n"
         android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="gone"
+        tools:visibility="visible" />
+        <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/graficoO2"
+        android:layout_width="match_parent"
+        android:layout_height="200sp">
+    </com.github.mikephil.charting.charts.LineChart>
+
+    <TextView
+        android:id="@+id/tvGrapTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nodata" />
+        android:layout_gravity="center"
+        android:layout_marginVertical="12dp"
+        android:fontFamily="@font/helvetica_regular"
+        android:text="@string/temperatura"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/graficotemp"
+        android:layout_width="match_parent"
+        android:layout_height="200sp">
+    </com.github.mikephil.charting.charts.LineChart>
+
+
 </LinearLayout>
 
         <ProgressBar

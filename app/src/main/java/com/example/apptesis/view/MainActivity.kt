@@ -1,11 +1,14 @@
 package com.example.apptesis.view
 
+import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import androidx.activity.viewModels
@@ -18,6 +21,7 @@ import com.example.apptesis.PacientesAdapter
 import com.example.apptesis.R
 import com.example.apptesis.core.Pref
 import com.example.apptesis.databinding.ActivityMainBinding
+import com.example.apptesis.databinding.ItemDialgoAltaBinding
 import com.example.apptesis.databinding.ItemDialogBinding
 import com.example.apptesis.model.PacienteModel
 import com.example.apptesis.viewmodel.MainViewModel
@@ -29,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     private val duration = MotionToast.LONG_DURATION
     private val gravity = MotionToast.GRAVITY_BOTTOM
     private var font = null
+    private var deletedPos = 0
     private lateinit var binding : ActivityMainBinding
     private var isClikeable = false
     private lateinit var bindingDialog : ItemDialogBinding
@@ -69,9 +74,17 @@ class MainActivity : AppCompatActivity() {
             openDialog()
         })
         mainViewModel.paciente.observe(this, Observer {
-            toSaveList.add(it)
-            pref.save(toSaveList)
-            adapter.addItem(it)
+            if(toSaveList.contains(it))
+            {
+                MotionToast.createColorToast(this,getString(R.string.advertencia),"El paciente ya está en la lista",MotionToast.TOAST_ERROR,gravity,duration,font)
+            }
+            else {
+                toSaveList.add(it)
+                pref.save(toSaveList)
+                Log.e("ERROR", list.toString())
+                adapter.notifyItemInserted(list.size)
+                //adapter.addItem(it,toSaveList.size-1)
+            }
              })
         mainViewModel.asignado.observe(this, Observer {
             MotionToast.createColorToast(this,getString(R.string.advertencia),"EL ID ya esta asignado al Paciente de CI ${it.ci}",MotionToast.TOAST_INFO,gravity,duration, font)
@@ -140,30 +153,46 @@ class MainActivity : AppCompatActivity() {
            }
 
            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-               val deleteCI = toSaveList[viewHolder.absoluteAdapterPosition].ci
+               Log.e("ERROR",viewHolder.position.toString())
+               deletedPos = viewHolder.absoluteAdapterPosition
+               val deleteCI = toSaveList[viewHolder.position].ci
+               val deletedItem = toSaveList[viewHolder.position]
+               Log.e("ERROR",deletedItem.toString())
                toSaveList.removeAt(viewHolder.adapterPosition)
+               Log.e("ERROR",toSaveList.toString())
                pref.save(toSaveList)
-               adapter.deleteItem(viewHolder.adapterPosition)
-               showdialogAlta(deleteCI)
+               adapter.notifyDataSetChanged()
+               showdialogAlta(deleteCI,deletedItem,adapter,pref)
            }
        }
     val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(binding.rvPacientes)
     }
 
-    private fun showdialogAlta(item : String) {
-        var builder = AlertDialog.Builder(this)
-        builder.setTitle("¿Desea dar de alta al paciente?")
-        builder.setMessage("El paciente se eliminó de la lista pero aún no se le ha dado de alta")
-        builder.setPositiveButton("Si",DialogInterface.OnClickListener{dialog, id ->
+
+    private fun showdialogAlta(item : String,deletedItem : PacienteModel,adapter: PacientesAdapter,pref: Pref) {
+
+        val b = ItemDialgoAltaBinding.inflate(layoutInflater)
+        val builder = AlertDialog.Builder(this)
+        builder.setView(b.root)
+        builder.setCancelable(false)
+        val dialog = builder.create()
+        b.yesAlta.setOnClickListener {
             mainViewModel.alta(item)
             dialog.cancel()
-        })
-        builder.setNegativeButton("No",DialogInterface.OnClickListener{dialog, which ->
+        }
+        b.noAlta.setOnClickListener{
             dialog.cancel()
-        })
-        var alert = builder.create()
-        alert.show()
+        }
+        b.cancelAlta.setOnClickListener {
+            toSaveList.add(deletedPos,deletedItem)
+            adapter.notifyItemInserted(deletedPos)
+            pref.save(toSaveList)
+            dialog.cancel()
+        }
+
+        dialog.show()
+
     }
 
     private fun createDialog() {

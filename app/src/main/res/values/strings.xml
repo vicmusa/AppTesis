@@ -50,4 +50,8 @@
     <string name="exito">"¡Éxito!"</string>
     <string name="error">"¡Error!"</string>
     <string name="borrar">Borrar</string>
+    <string name="alta">¿Desea dar de alta al paciente?</string>
+    <string name="elim">El paciente se eliminó de la lista pero aún no se le ha dado de alta</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
 </resources>
