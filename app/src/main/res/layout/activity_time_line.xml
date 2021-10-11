@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkwhite"
+    android:background="@drawable/fondo"
     tools:context=".view.TimeLineActivity">
 <ScrollView
     android:layout_width="match_parent"
@@ -13,11 +13,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12sp"
+            android:layout_margin="16sp"
+            android:orientation="vertical"
+            android:background="@drawable/dialog_spahes">
     <TextView
         android:layout_gravity="center"
         android:layout_margin="19dp"
         android:textSize="30sp"
         android:id="@+id/datos"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/evoluci_n"
@@ -28,6 +37,7 @@
         android:layout_marginVertical="12dp"
         android:layout_marginStart="20dp"
         android:id="@+id/spinner"
+        android:padding="3sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent" />
@@ -42,10 +52,12 @@
             android:text="@string/ver_datos"
             android:background="@drawable/btnstyle"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
+        </LinearLayout>
 <LinearLayout
     android:id="@+id/llgraph"
     android:background="@drawable/shapegraph"
     android:orientation="vertical"
+    android:visibility="gone"
     android:layout_margin="18dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -81,15 +93,13 @@
     <TextView
         android:id="@+id/tvGrapSpo2"
         android:layout_width="wrap_content"
-        android:layout_height="19dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginVertical="12dp"
         android:fontFamily="@font/helvetica_regular"
         android:text="@string/oxigenaci_n"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        android:visibility="gone"
-        tools:visibility="visible" />
+        android:textSize="20sp" />
         <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/graficoO2"
         android:layout_width="match_parent"
@@ -120,7 +130,6 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
     </LinearLayout>
 </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

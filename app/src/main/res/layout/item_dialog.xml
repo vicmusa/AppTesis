@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Añadir Pacientes"
+            android:text="@string/monitorear_pacientes"
             android:gravity="center"
             android:textSize="25sp"
             android:textColor="@color/white"
@@ -29,7 +29,7 @@
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:text="@string/cédula"
-             android:textSize="19dp"
+             android:textSize="19sp"
              android:layout_marginTop="15dp"
              android:layout_marginStart="20dp"/>
          <EditText
@@ -39,28 +39,30 @@
              android:layout_marginStart="20dp"
              android:layout_marginEnd="20dp"
              android:inputType="number"
-             android:hint="12345678"/>
+             android:hint="@string/_12345678"
+             android:autofillHints="@string/cédula" />
          <TextView
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:text="@string/IDdispositivo"
-             android:textSize="19dp"
+             android:textSize="19sp"
 
              android:layout_marginTop="20dp"
              android:layout_marginStart="20dp"/>
          <EditText
+             android:autofillHints="@string/IDdispositivo"
              android:id="@+id/dialogID"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:layout_marginStart="20dp"
-             android:hint="FA32D3"
+             android:hint="@string/fa32d3"
              android:layout_marginEnd="20dp"/>
          <LinearLayout
              android:layout_marginTop="15dp"
              android:layout_marginEnd="20dp"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:layout_gravity="right"
+             android:layout_gravity="end"
              android:layout_marginBottom="20dp">
              <TextView
                  android:textColor="@color/bluelite"
@@ -69,14 +71,14 @@
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:text="@string/Cancelar"
-                 android:textSize="15dp"/>
+                 android:textSize="15sp"/>
              <TextView
                  android:id="@+id/dialogAdd"
                  android:textColor="@color/bluelite"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:text="@string/agregar"
-                 android:textSize="15dp"/>
+                 android:textSize="15sp"/>
          </LinearLayout>
 
      </LinearLayout>

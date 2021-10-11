@@ -5,6 +5,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 
 object FirebaseHelper {
 
@@ -23,5 +24,12 @@ object FirebaseHelper {
         val db = Firebase.firestore.collection("pacientes")
 
         return db
+    }
+
+    fun SuscribeTopic(id : String){
+        FirebaseMessaging.getInstance().subscribeToTopic(id)
+    }
+    fun UnsuscribeTopic(id : String){
+        FirebaseMessaging.getInstance().unsubscribeFromTopic(id)
     }
 }

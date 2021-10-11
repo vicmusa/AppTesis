@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".view.AddPacientActivity"
     android:orientation="vertical"
-    android:background="@color/darkwhite">
+    android:background="@drawable/fondo">
+
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,26 +17,39 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-    <EditText
-        android:hint="@string/nombre"
-        android:id="@+id/etNombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16sp"
+                android:background="@drawable/dialog_spahes"
+                android:layout_margin="18sp">
 
-    <EditText
+                <EditText
+                    android:id="@+id/etNombre"
+                    android:textColorHint="@color/alice_blue"
+                    android:textColor="@color/bluelite_dark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:hint="@string/nombre" />
+
+                <EditText
         android:hint="@string/apellido"
         android:id="@+id/etApellido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+                    android:textColorHint="@color/alice_blue"
+                    android:textColor="@color/bluelite_dark"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp" />
 
     <EditText
         android:id="@+id/etCI"
+        android:textColorHint="@color/alice_blue"
+        android:textColor="@color/bluelite_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -45,6 +60,8 @@
 
     <EditText
         android:id="@+id/etID"
+        android:textColorHint="@color/alice_blue"
+        android:textColor="@color/bluelite_dark"
         android:hint="@string/IDdispositivo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,11 +69,18 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp" />
 
+            </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_spahes"
+    android:layout_margin="16sp"
+    android:padding="12sp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:orientation="horizontal"
         android:textAlignment="center">
@@ -67,7 +91,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.3"
             android:text="@string/edad"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/bluelite_dark" />
 
         <TextView
             android:id="@+id/textView4"
@@ -75,7 +100,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.3"
             android:text="@string/Peso"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/bluelite_dark" />
 
         <TextView
             android:id="@+id/textView3"
@@ -83,7 +109,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.3"
             android:text="@string/Estatura"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/bluelite_dark" />
     </LinearLayout>
 
     <LinearLayout
@@ -161,113 +188,133 @@
 
 
     </LinearLayout>
+</LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_spahes"
+    android:layout_margin="16sp"
+    android:padding="12sp">
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/grupo_san" />
+        android:text="@string/grupo_san"
+        android:textColor="@color/bluelite_dark" />
 
     <Spinner
         android:id="@+id/spinner2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:textAlignment="center" />
+
+</LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_spahes"
+    android:padding="12sp"
+        android:layout_margin="16sp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="@string/patoprev" />
+        android:text="@string/patoprev"
+        android:textColor="@color/bluelite_dark" />
 
-    <Spinner
-        android:id="@+id/spinner3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:textAlignment="center" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        android:text="@string/ninguna"
-        android:id="@+id/tvPrevpato"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-          android:background="@drawable/btnstyle"
-            android:id="@+id/btnCanPato"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
+        <Spinner
+            android:id="@+id/spinner3"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/borrar"
-            android:layout_marginHorizontal="25dp"
-            android:layout_weight="0.5"/>
-        <Button
-            android:textColor="@color/white"
-            android:background="@drawable/btnstyle"
-            android:id="@+id/btnAddPato"
-            android:layout_width="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="25dp"
-            android:text="@string/agregar"
-            android:layout_weight="0.5"/>
-    </LinearLayout>
+            android:layout_margin="12dp"
+            android:text="@string/ninguna"
+            android:id="@+id/tvPrevpato"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+              android:background="@drawable/btnstyle"
+                android:id="@+id/btnCanPato"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/borrar"
+                android:layout_marginHorizontal="25dp"
+                android:layout_weight="0.5"/>
+            <Button
+                android:textColor="@color/white"
+                android:background="@drawable/btnstyle"
+                android:id="@+id/btnAddPato"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:text="@string/agregar"
+                android:layout_weight="0.5"/>
+        </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="@string/alergias" />
+        android:text="@string/alergias"
+        android:textColor="@color/bluelite_dark" />
 
-    <Spinner
-        android:id="@+id/spinner4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:textAlignment="center" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        android:text="@string/ninguna"
-        android:id="@+id/tvAlergias"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:textColor="@color/white"
-            android:background="@drawable/btnstyle"
-            android:id="@+id/btnCanAler"
-            android:layout_width="wrap_content"
+        <Spinner
+            android:id="@+id/spinner4"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/borrar"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:textAlignment="center" />
 
-            android:layout_marginHorizontal="25dp"
-            android:layout_weight="0.5"/>
-        <Button
-            android:textColor="@color/white"
-            android:background="@drawable/btnstyle"
-            android:id="@+id/btnAddAler"
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="25dp"
-            android:text="@string/agregar"
-            android:layout_weight="0.5"/>
-    </LinearLayout>
+            android:layout_margin="12dp"
+            android:text="@string/ninguna"
+            android:id="@+id/tvAlergias"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:textColor="@color/white"
+                android:background="@drawable/btnstyle"
+                android:id="@+id/btnCanAler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/borrar"
+
+                android:layout_marginHorizontal="25dp"
+                android:layout_weight="0.5"/>
+            <Button
+                android:textColor="@color/white"
+                android:background="@drawable/btnstyle"
+                android:id="@+id/btnAddAler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:text="@string/agregar"
+                android:layout_weight="0.5"/>
+        </LinearLayout>
+</LinearLayout>
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/isloading1"

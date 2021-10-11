@@ -19,12 +19,16 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apptesis.PacientesAdapter
 import com.example.apptesis.R
+import com.example.apptesis.core.FirebaseHelper
 import com.example.apptesis.core.Pref
 import com.example.apptesis.databinding.ActivityMainBinding
 import com.example.apptesis.databinding.ItemDialgoAltaBinding
 import com.example.apptesis.databinding.ItemDialogBinding
 import com.example.apptesis.model.PacienteModel
 import com.example.apptesis.viewmodel.MainViewModel
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.internal.FirebaseInstanceIdInternal
+import com.google.firebase.messaging.FirebaseMessaging
 import www.sanju.motiontoast.MotionToast
 
 
@@ -49,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         bindingDialog = ItemDialogBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val pref = Pref(this)
+
         list = pref.getList()!!.toMutableList()
         toSaveList = list
 
@@ -79,11 +84,11 @@ class MainActivity : AppCompatActivity() {
                 MotionToast.createColorToast(this,getString(R.string.advertencia),"El paciente ya está en la lista",MotionToast.TOAST_ERROR,gravity,duration,font)
             }
             else {
-                toSaveList.add(it)
+                list.add(it)
+                toSaveList = list
                 pref.save(toSaveList)
                 Log.e("ERROR", list.toString())
-                adapter.notifyItemInserted(list.size)
-                //adapter.addItem(it,toSaveList.size-1)
+                adapter.notifyItemInserted(list.size-1)
             }
              })
         mainViewModel.asignado.observe(this, Observer {
@@ -121,6 +126,7 @@ class MainActivity : AppCompatActivity() {
         }
         binding.fabtimeline.setOnClickListener {
             goto(2)
+            goto(2)
         }
         binding.fabadd2.setOnClickListener {
             goto(1)
@@ -153,14 +159,14 @@ class MainActivity : AppCompatActivity() {
            }
 
            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-               Log.e("ERROR",viewHolder.position.toString())
                deletedPos = viewHolder.absoluteAdapterPosition
-               val deleteCI = toSaveList[viewHolder.position].ci
-               val deletedItem = toSaveList[viewHolder.position]
-               Log.e("ERROR",deletedItem.toString())
-               toSaveList.removeAt(viewHolder.adapterPosition)
-               Log.e("ERROR",toSaveList.toString())
+               FirebaseHelper.UnsuscribeTopic(list[deletedPos].id)
+               val deleteCI = toSaveList[deletedPos].ci
+               val deletedItem = toSaveList[deletedPos]
+               list.removeAt(deletedPos)
+               toSaveList = list
                pref.save(toSaveList)
+               adapter.notifyItemRemoved(deletedPos)
                adapter.notifyDataSetChanged()
                showdialogAlta(deleteCI,deletedItem,adapter,pref)
            }
@@ -179,16 +185,17 @@ class MainActivity : AppCompatActivity() {
         val dialog = builder.create()
         b.yesAlta.setOnClickListener {
             mainViewModel.alta(item)
-            dialog.cancel()
+            dialog.dismiss()
         }
         b.noAlta.setOnClickListener{
-            dialog.cancel()
+            dialog.dismiss()
         }
         b.cancelAlta.setOnClickListener {
-            toSaveList.add(deletedPos,deletedItem)
+            list.add(deletedPos,deletedItem)
             adapter.notifyItemInserted(deletedPos)
+            toSaveList=list
             pref.save(toSaveList)
-            dialog.cancel()
+            dialog.dismiss()
         }
 
         dialog.show()

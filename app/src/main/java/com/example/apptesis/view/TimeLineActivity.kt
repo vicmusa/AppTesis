@@ -60,7 +60,7 @@ class TimeLineActivity : AppCompatActivity() {
                 MotionToast.createColorToast(this,getString(R.string.advertencia),"No hay pacientes agregados",MotionToast.TOAST_WARNING,MotionToast.GRAVITY_BOTTOM,MotionToast.LONG_DURATION,null)
             }
             val arrayAdapter: ArrayAdapter<PacienteModel> =
-                ArrayAdapter(this, android.R.layout.simple_spinner_item, it)
+                ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, it)
             binding.spinner.adapter = arrayAdapter
             list = it
         })
@@ -132,10 +132,6 @@ class TimeLineActivity : AppCompatActivity() {
 
     private fun prepareActionBar() {
         actionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
     }
     }
 

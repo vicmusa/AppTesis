@@ -12,22 +12,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTesis">
-        <activity android:name=".view.AddPacientActivity"
-            android:parentActivityName=".view.MainActivity"/>
-        <activity android:name=".view.InfoActivity"
-            android:parentActivityName=".view.MainActivity"/>
-        <activity android:name=".view.TimeLineActivity"
-            android:parentActivityName=".view.MainActivity"/>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_launcher_2_foreground" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/white" />
+
+
+        <activity
+            android:name=".view.AddPacientActivity"
+            android:parentActivityName=".view.MainActivity" />
+        <activity
+            android:name=".view.InfoActivity"
+            android:parentActivityName=".view.MainActivity" />
+        <activity
+            android:name=".view.TimeLineActivity"
+            android:parentActivityName=".view.MainActivity" />
         <activity
             android:name=".SplashScreenActivity"
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
-
                 <action android:name="android.intent.action.MAIN" />
+
             </intent-filter>
         </activity>
-        <activity android:name=".view.MainActivity" />
+        <activity android:name=".view.MainActivity"/>
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

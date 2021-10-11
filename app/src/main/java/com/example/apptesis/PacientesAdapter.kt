@@ -19,6 +19,8 @@ import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.example.apptesis.core.FirebaseHelper
+import com.example.apptesis.databinding.ItemInfoBinding
+import com.example.apptesis.databinding.ItemPacienteBinding
 import com.google.firebase.database.*
 import com.example.apptesis.model.PacienteModel
 import com.example.apptesis.view.MainActivity
@@ -54,57 +56,59 @@ class PacientesAdapter(val listPacientes:MutableList<PacienteModel>,context: Con
 
     class PacienteHolder(val view: View):RecyclerView.ViewHolder(view){
 
-            val arrow = view.findViewById(R.id.arrowRecycler) as LottieAnimationView
-            val tvName = view.findViewById(R.id.tvName) as TextView
-            val tvTemp = view.findViewById(R.id.tvTemp) as TextView
-            val tvHr = view.findViewById(R.id.tvHr) as TextView
-            val tvSpo2 = view.findViewById(R.id.tvSpo2) as TextView
-            val infoTab = view.findViewById(R.id.infoTab) as LinearLayout
-            val tvCI = view.findViewById(R.id.tvCI) as TextView
-            val tvFecha = view.findViewById(R.id.tvFecha) as TextView
-            val tvEdad = view.findViewById(R.id.tvEdad) as TextView
-            val tvPeso = view.findViewById(R.id.tvPeso) as TextView
-            val tvEstatura = view.findViewById(R.id.tvEstatura) as TextView
-            val tvPrevpato = view.findViewById(R.id.tvPrevPato) as TextView
-            val tvAlergias = view.findViewById(R.id.tvALERGIAS) as TextView
-            val tvID = view.findViewById(R.id.tvID) as TextView
+            private val binding = ItemPacienteBinding.bind(view)
+
+
 
 
         fun render(paciente : PacienteModel,context: Context)
         {
-                tvName.text= paciente.nombre +" "+ paciente.apellido
-                tvCI.text = "Cédula: "+paciente.ci
-                val fdate = DateFormat.getDateInstance()
-                tvFecha.text = "Fecha de Inicio: "+ fdate.format(Date(paciente.fecha.toLong()))
-                tvEdad.text = "Edad: "+paciente.edad + "años"
-                tvPeso.text = "Peso: "+paciente.peso + "Kg"
-                tvEstatura.text = "Estatura: "+paciente.estatura + "cm"
-                tvPrevpato.text = "Factores de Riesgo: "+paciente.prepato
-                tvAlergias.text ="Alergias: "+paciente.alergias
-                tvID.text ="Dispositivo en uso: "+paciente.id
-            val listener = object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot)
-                {
-                    if(snapshot.exists()) {
 
+                binding.tvName.text= paciente.nombre +" "+ paciente.apellido
+                binding.tvCI.text = "Cédula: "+paciente.ci
+                val fdate = DateFormat.getDateInstance()
+                binding.tvFecha.text = "Fecha de Inicio: "+ fdate.format(Date(paciente.fecha.toLong()))
+                binding.tvEdad.text = "Edad: "+paciente.edad + "años"
+                binding.tvPeso.text = "Peso: "+paciente.peso + "Kg"
+                binding.tvEstatura.text = "Estatura: "+paciente.estatura + "cm"
+                binding.tvPrevPato.text = "Factores de Riesgo: "+paciente.prepato
+                binding.tvALERGIAS.text ="Alergias: "+paciente.alergias
+                binding.tvID.text ="Dispositivo en uso: "+paciente.id
+                FirebaseHelper.SuscribeTopic(paciente.id)
+            val listener = object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+
+                        val flag = snapshot.child("flag").getValue().toString().toInt()
                         val spo2 = snapshot.child("spo2").getValue().toString().toDouble()
                         val hr = snapshot.child("hr").getValue().toString().toDouble()
                         val temp = snapshot.child("temp").getValue().toString().toDouble()
-                        val spo2String = String.format("%.1f",spo2)
-                        val hrString = String.format("%.1f",hr)
-                        val tempString = String.format("%.1f",temp)
-                        tvTemp.text = tempString
-                        tvHr.text = hrString
-                        tvSpo2.text = spo2String
+                        val spo2String = String.format("%.1f", spo2)
+                        val hrString = String.format("%.1f", hr)
+                        val tempString = String.format("%.1f", temp)
+                        binding.tvTemp.text = tempString
+                        binding.tvHr.text = hrString
+                        binding.tvSpo2.text = spo2String
 
+                        var yellow: Boolean
+                    if (flag != 0 ||  temp > 38.5 || temp < 33.0 || spo2 <= 94.0 || hr > 100 || hr < 40) {
+                            yellow = true
+                                binding.allRv.setBackgroundResource(R.drawable.recycler_yellow)
+                            if (flag != 0) {
+                                binding.tvDedo.visibility = View.VISIBLE
+                            } else {
+                                binding.tvValor.visibility = View.VISIBLE
 
-                        if(spo2.toLong() <= 92.0 || temp.toLong() >= 39.0 || temp.toLong() <= 34.5 )
-                        {
-                                MotionToast.createColorToast(context as Activity, "¡Alerta paciente ${paciente.nombre} ${paciente.apellido}!","El paciente tiene valores fuera del rango normal",
-                                MotionToast.TOAST_WARNING,
-                                MotionToast.GRAVITY_BOTTOM,
-                                MotionToast.LONG_DURATION,null)
+                            }
+
+                        } else {
+                            yellow = false
+                            binding.tvDedo.visibility = View.GONE
+                            binding.tvValor.visibility = View.GONE
+                            binding.allRv.setBackgroundResource(R.drawable.recycler)
+
                         }
+                        Log.e("YEllOW", yellow.toString())
 
                     }
                 }
@@ -114,17 +118,17 @@ class PacientesAdapter(val listPacientes:MutableList<PacienteModel>,context: Con
 
             }
             FirebaseHelper.HelperSensores().child(paciente.id).addValueEventListener(listener)
-            arrow.setOnClickListener {
-                if(infoTab.visibility==View.GONE)
+            binding.arrowRecycler.setOnClickListener {
+                if(binding.infoTab.visibility==View.GONE)
                 {
-                    infoTab.visibility=View.VISIBLE
-                    arrow.setMinAndMaxProgress(0.0f,0.5f)
-                    arrow.playAnimation()
+                    binding.infoTab.visibility=View.VISIBLE
+                    binding.arrowRecycler.setMinAndMaxProgress(0.0f,0.5f)
+                    binding.arrowRecycler.playAnimation()
                 }
                 else{
-                    infoTab.visibility= View.GONE
-                    arrow.setMinAndMaxProgress(0.5f,1.0f)
-                    arrow.playAnimation()
+                    binding.infoTab.visibility= View.GONE
+                    binding.arrowRecycler.setMinAndMaxProgress(0.5f,1.0f)
+                    binding.arrowRecycler.playAnimation()
                 }
 
              }
@@ -133,14 +137,4 @@ class PacientesAdapter(val listPacientes:MutableList<PacienteModel>,context: Con
 
     }
 
-private fun MotionToast.Companion.createColorToast(
-    context: ValueEventListener,
-    title: String?,
-    message: String,
-    style: String,
-    position: Int,
-    duration: Long,
-    font: Typeface?
-) {
 
-}

@@ -54,4 +54,10 @@
     <string name="elim">El paciente se eliminó de la lista pero aún no se le ha dado de alta</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
+    <string name="default_notification_channel_id">com.example.apptesis</string>
+    <string name="monitorear_pacientes">Monitorear Pacientes</string>
+    <string name="fa32d3">FA32D3</string>
+    <string name="_12345678">12345678</string>
+    <string name="el_paciente_no_est_conectado_al_sensor">El paciente no está conectado al sensor</string>
+    <string name="hay_un_valor_fuera_de_los_rangos_normales">Hay un valor fuera de los rangos normales</string>
 </resources>
